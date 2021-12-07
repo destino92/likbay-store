@@ -47,7 +47,7 @@ class CheckoutPage extends Component {
       'shipping[town_city]': 'Vancouver',
       'shipping[region]': 'BC',
       'shipping[postal_zip_code]': 'V6B 2V2',
-      'shipping[country]': 'CA',
+      'shipping[country]': 'CG',
       'billing[name]': '',
       'billing[street]': '',
       'billing[street_2]': '',
@@ -647,7 +647,7 @@ class CheckoutPage extends Component {
                               {
                                 shippingOptions && shippingOptions.map(option => (
                                   <option key={option.id} value={option.id}>
-                                  { `${option.description} - $${option.price.formatted_with_code}` }
+                                  { `${option.description} - ${option.price.formatted_with_code}` }
                                   </option>
                                 ))
                               }
