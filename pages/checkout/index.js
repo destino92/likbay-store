@@ -38,7 +38,7 @@ class CheckoutPage extends Component {
       // e.g error { param: "shipping[name]"}
       'customer[first_name]': '',
       'customer[last_name]': '',
-      'customer[email]': 'test@email.com',
+      'customer[email]': '',
       'customer[phone]': '',
       'customer[id]': null,
       'shipping[name]': '',
@@ -588,10 +588,11 @@ class CheckoutPage extends Component {
                     <div className="row">
                       <div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
-                          <p required className="mb-1 font-size-caption font-color-light">
+                          <p className="mb-1 font-size-caption font-color-light">
                             Telephone
                           </p>
                           <input
+                            required
                             name="customer[phone]"
                             autoComplete="tel"
                             value={this.state['customer[phone]']}
@@ -599,7 +600,7 @@ class CheckoutPage extends Component {
                           />
                         </label>
                       </div>
-                      {/*<div className="col-12 col-sm-6 mb-3">
+                      <div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
                           <p className="mb-1 font-size-caption font-color-light">
                             Email address*
@@ -612,7 +613,7 @@ class CheckoutPage extends Component {
                             className="rounded-0 w-100"
                           />
                         </label>
-                      </div>*/}
+                      </div>
                     </div>
                     <p className="font-size-subheader font-weight-semibold mb-4">
                       Adresse de livraison
@@ -725,7 +726,7 @@ class CheckoutPage extends Component {
                       className="bg-black font-color-white w-100 border-none h-56 font-weight-semibold d-lg-block"
                       disabled={!selectedShippingOption}
                     >
-                      Make payment
+                      Commander
                     </button>
                   </form>
                 )

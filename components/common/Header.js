@@ -187,9 +187,9 @@ class Header extends Component {
             <Link href="/collection">
               <a className="mr-4 font-color-black">Shop</a>
             </Link>
-            <Link href="/about">
+            {/*<Link href="/about">
               <a className="font-color-black">A propos</a>
-            </Link>
+            </Link>*/}
           </div>
           <div className="logo-container">
             <img
@@ -209,7 +209,7 @@ class Header extends Component {
             </Link>
           </div>
           <div className="d-flex">
-            { process.browser && this.renderLoginLogout() }
+            {/* process.browser && this.renderLoginLogout() */}
             <div
               className="position-relative cursor-pointer"
               onClick={this.toggleCart}
