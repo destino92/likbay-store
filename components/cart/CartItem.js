@@ -59,7 +59,7 @@ class CartItem extends Component {
                 </button>
               </div>
               <p className="text-right text-decoration-underline font-color-medium cursor-pointer" onClick={() => this.handleRemoveFromCart(item.id)}>
-                Remove
+                Retirer
               </p>
             </div>
           </div>
