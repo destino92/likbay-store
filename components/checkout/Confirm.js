@@ -111,7 +111,7 @@ class Confirm extends Component {
                   Merci pour votre achat!
                 </h3>
                 <h4 className="text-center font-size-subheader mb-3">
-                  Votre commande s'est terminée avec succès
+                  Votre commande s&#39;est terminée avec succès
                 </h4>
                 <p className="text-center font-color-light mb-5">
                   Voici votre numéro de commande pour référence : {orderReceipt.customer_reference}

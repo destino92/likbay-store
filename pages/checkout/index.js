@@ -241,7 +241,7 @@ class CheckoutPage extends Component {
         return Promise.reject(resp);
       })
       .catch(error => {
-        alert("Désolé, le code de réduction n'a pas pu être appliqué");
+        alert('Désolé, le code de réduction n\'a pas pu être appliqué');
       });
   }
 
@@ -798,7 +798,7 @@ class CheckoutPage extends Component {
                     },
                     {
                       name: 'Expédition',
-                      amount: selectedShippingOption ? `${selectedShippingOption.description} - ${selectedShippingOption.price.formatted_with_symbol}` : "Aucun mode d'expédition sélectionné",
+                      amount: selectedShippingOption ? `${selectedShippingOption.description} - ${selectedShippingOption.price.formatted_with_symbol}` : 'Aucun mode d\'expédition sélectionné',
                     },
                     {
                       name: 'Remise',

@@ -16,7 +16,7 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Manuel d'utilisation
+                Manuel d&#39;utilisation
               </a>
               <a
                 href=""

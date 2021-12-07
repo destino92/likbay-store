@@ -73,7 +73,7 @@ export default class ExploreBanner extends React.Component {
                   className="font-size-display3 font-weight-light mb-4"
                   style={{ maxWidth: '20rem' }}
                 >
-                  Une nouvelle expérience d'achat
+                  Une nouvelle expérience d&#39;achat
                 </p>
                 <div className="d-flex">
                   <Link href="/collection">
