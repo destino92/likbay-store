@@ -32,10 +32,10 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="https://unpkg.com/swiper@6.6.2/swiper-bundle.min.css" />
           <meta name="title" content="Site de commerce en ligne" key="title" />
           <meta name="description" content="Likbay est une solution de vente et d'achats en ligne" />
-          <meta property="og:title" content="Likbay | Demo storefront" />
+          <meta property="og:title" content="Likbay" />
           <meta property="og:image" content="https://cdn.chec.io/email/assets/marketing/demo-preview.png" />
           <meta property="og:description" content="Likbay est une solution de vente et d'achats en ligne, veuillez visiter" />
-          <meta property="og:url" content="https://commercejs-demo-store.netlify.app" />
+          <meta property="og:url" content="likbay.co" />
           <meta property="twitter:title" content="Likbay | Demo storefront" />
           <meta name="twitter:creator" content="@likaby" />
           <meta property="twitter:image" content="https://cdn.chec.io/email/assets/marketing/demo-preview.png" />
