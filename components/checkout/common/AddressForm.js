@@ -60,7 +60,7 @@ export default class AddressForm extends Component {
           <div className="col-12 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">
-                Full name*
+                Nom Complet*
               </p>
               <input required name={`${type}[name]`} autoComplete="name" value={name} className="rounded-0 w-100" />
             </label>
@@ -70,12 +70,12 @@ export default class AddressForm extends Component {
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">
-                Country*
+                Pays*
               </p>
               <Dropdown
                 required
                 name={`${type}[country]`}
-                placeholder="Select a country"
+                placeholder="Selectionner le pays"
                 value={country}
               >
                 {
@@ -90,7 +90,7 @@ export default class AddressForm extends Component {
           </div>
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
-              <p className="mb-1 font-size-caption font-color-light">City*</p>
+              <p className="mb-1 font-size-caption font-color-light">Ville*</p>
               <input required name={`${type}[town_city]`} autoComplete="address-level2" value={townCity} className="rounded-0 w-100" />
             </label>
           </div>
@@ -99,7 +99,7 @@ export default class AddressForm extends Component {
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">
-                Address line 1*
+                Adresse ligne 1*
               </p>
               <input
                 required
@@ -114,13 +114,13 @@ export default class AddressForm extends Component {
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">
-                Address line 2 (optional)
+                Adresse ligne 2 (optionnelle)
               </p>
               <input
                 name={`${type}[street_2]`}
                 value={street2}
                 className="rounded-0 w-100"
-                placeholder="Apartment, suite number, etc."
+                placeholder="Appartement, numéro de suite, etc."
               />
             </label>
           </div>
@@ -129,7 +129,7 @@ export default class AddressForm extends Component {
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">
-                State/province/region*
+                Région
               </p>
               <Dropdown
                 required
@@ -150,10 +150,9 @@ export default class AddressForm extends Component {
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">
-                Postal code/zip code*
+                Code postal*
               </p>
               <input
-                required
                 autoComplete="postal-code"
                 name={`${type}[postal_zip_code]`}
                 value={postalZipCode}

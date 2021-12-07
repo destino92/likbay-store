@@ -20,7 +20,7 @@ export default function Loader() {
         height={500}
         width={400}
       />
-      <h1 className="text-center font-family-secondary">Your order is processing...</h1>
+      <h1 className="text-center font-family-secondary">Votre commande est en cours de traitement...</h1>
     </div>
   );
 }

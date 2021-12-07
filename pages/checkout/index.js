@@ -36,18 +36,18 @@ class CheckoutPage extends Component {
 
       // string property names to conveniently identify inputs related to commerce.js validation errors
       // e.g error { param: "shipping[name]"}
-      'customer[first_name]': 'John',
-      'customer[last_name]': 'Doe',
-      'customer[email]': 'john@doe.com',
+      'customer[first_name]': '',
+      'customer[last_name]': '',
+      'customer[email]': 'test@email.com',
       'customer[phone]': '',
       'customer[id]': null,
-      'shipping[name]': 'John Doe',
-      'shipping[street]': '318 Homer Street',
+      'shipping[name]': '',
+      'shipping[street]': '',
       'shipping[street_2]': '',
-      'shipping[town_city]': 'Vancouver',
-      'shipping[region]': 'BC',
-      'shipping[postal_zip_code]': 'V6B 2V2',
-      'shipping[country]': 'CG',
+      'shipping[town_city]': '',
+      'shipping[region]': '',
+      'shipping[postal_zip_code]': '',
+      'shipping[country]': '',
       'billing[name]': '',
       'billing[street]': '',
       'billing[street_2]': '',
@@ -76,7 +76,7 @@ class CheckoutPage extends Component {
         'shipping[postal_zip_code]': null
       },
 
-      discountCode: 'CUSTOMCOMMERCE',
+      discountCode: '',
 
       selectedGateway: 'test_gateway',
       loading: false,
@@ -241,7 +241,7 @@ class CheckoutPage extends Component {
         return Promise.reject(resp);
       })
       .catch(error => {
-        alert('Sorry, the discount code could not be applied');
+        alert("Désolé, le code de réduction n'a pas pu être appliqué");
       });
   }
 
@@ -541,7 +541,7 @@ class CheckoutPage extends Component {
     return (
       <Root>
         <Head>
-          <title>Checkout</title>
+          <title>Commande</title>
         </Head>
 
         <div className="custom-container py-5 my-4 my-sm-5">
@@ -552,12 +552,12 @@ class CheckoutPage extends Component {
               <div className="d-flex pb-4 breadcrumb-container">
                 <Link href="/collection">
                   <a className="font-color-dark font-size-caption text-decoration-underline cursor-pointer">
-                    Cart
+                    Panier
                   </a>
                 </Link>
                 <img src="/icon/arrow-right.svg" className="w-16 mx-1" alt="Arrow icon"/>
                 <div className="font-size-caption font-weight-bold cursor-pointer">
-                  Checkout
+                  Commande
                 </div>
               </div>
               {
@@ -565,13 +565,13 @@ class CheckoutPage extends Component {
                 && (
                   <form onChange={this.handleChangeForm} onSubmit={this.captureOrder}>
                     <p className="font-size-subheader font-weight-semibold mb-4">
-                      Customer
+                      Client
                     </p>
                     <div className="row">
                       <div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
                           <p className="mb-1 font-size-caption font-color-light">
-                            First name*
+                            Prénom*
                           </p>
                           <input required name="customer[first_name]" autoComplete="given-name" value={this.state['customer[first_name]']} className="rounded-0 w-100" />
                         </label>
@@ -579,7 +579,7 @@ class CheckoutPage extends Component {
                       <div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
                           <p className="mb-1 font-size-caption font-color-light">
-                            Last name*
+                            Nom de famille*
                           </p>
                           <input required name="customer[last_name]" autoComplete="family-name" value={this.state['customer[last_name]']} className="rounded-0 w-100" />
                         </label>
@@ -588,7 +588,7 @@ class CheckoutPage extends Component {
                     <div className="row">
                       <div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
-                          <p className="mb-1 font-size-caption font-color-light">
+                          <p required className="mb-1 font-size-caption font-color-light">
                             Telephone
                           </p>
                           <input
@@ -599,7 +599,7 @@ class CheckoutPage extends Component {
                           />
                         </label>
                       </div>
-                      <div className="col-12 col-sm-6 mb-3">
+                      {/*<div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
                           <p className="mb-1 font-size-caption font-color-light">
                             Email address*
@@ -612,10 +612,10 @@ class CheckoutPage extends Component {
                             className="rounded-0 w-100"
                           />
                         </label>
-                      </div>
+                      </div>*/}
                     </div>
                     <p className="font-size-subheader font-weight-semibold mb-4">
-                      Shipping Address
+                      Adresse de livraison
                     </p>
                     <div className="mb-5">
                       <AddressForm
@@ -633,7 +633,7 @@ class CheckoutPage extends Component {
                         <div className="col-12 mb-3">
                           <label className="w-100">
                             <p className="mb-1 font-size-caption font-color-light">
-                              Shipping method*
+                              Mode de livraison*
                             </p>
                             <Dropdown
                               name="fulfillment[shipping_method]"
@@ -642,7 +642,7 @@ class CheckoutPage extends Component {
                                 ? (`${selectedShippingOption.description} - ${selectedShippingOption.price.formatted_with_code}`)
                                 : ''
                               }
-                              placeholder="Select a shipping method"
+                              placeholder="Selectionner Mode de livraison"
                             >
                               {
                                 shippingOptions && shippingOptions.map(option => (
@@ -655,7 +655,7 @@ class CheckoutPage extends Component {
                           </label>
                         </div>
                       </div>
-                      <div
+                      {/*<div
                         onClick={this.toggleNewsletter}
                         className="d-flex mb-4 flex-nowrap cursor-pointer"
                       >
@@ -669,16 +669,16 @@ class CheckoutPage extends Component {
                           Rest assured, you will not be flooded, we only send one newsletter
                           per month approximately 🙂
                         </p>
-                      </div>
+                      </div>*/}
                       <label className="w-100 mb-3">
                         <p className="mb-1 font-size-caption font-color-light">
-                          Order notes (optional)
+                          Notes de commande (facultatif)
                         </p>
                         <textarea name="orderNotes" value={this.state.orderNotes} className="rounded-0 w-100" />
                       </label>
                     </div>
 
-                    { this.renderPaymentDetails() }
+                    {/* this.renderPaymentDetails() */}
 
                     {/* Billing Address */}
                     { checkout.collects && checkout.collects.billing_address && <>
@@ -735,7 +735,7 @@ class CheckoutPage extends Component {
             <div className="col-12 col-lg-5 col-md-10 offset-md-1 mt-4 mt-lg-0">
               <div className="bg-brand200 p-lg-5 p-3 checkout-summary">
                 <div className="borderbottom font-size-subheader border-color-gray400 pb-2 font-weight-medium">
-                  Your order
+                  Votre commande
                 </div>
                 <div className="pt-3 borderbottom border-color-gray400">
                   {(checkout.live ? checkout.live.line_items : []).map((item, index, items) => {
@@ -752,7 +752,7 @@ class CheckoutPage extends Component {
                             <p className="font-weight-medium">
                               {item.product_name}
                             </p>
-                            <p className="font-color-light">Quantity: {item.quantity}</p>
+                            <p className="font-color-light">Quantité: {item.quantity}</p>
                             <div className="d-flex justify-content-between mb-2">
                               {item.selected_options.map((option) =>
                                 <p key={option.group_id} className="font-color-light font-weight-small">
@@ -762,7 +762,7 @@ class CheckoutPage extends Component {
                             </div>
                           </div>
                           <div className="text-right font-weight-semibold">
-                            ${item.line_total.formatted_with_code}
+                            {item.line_total.formatted_with_symbol}
                           </div>
                         </div>
                       </div>
@@ -773,8 +773,8 @@ class CheckoutPage extends Component {
                   <input
                     name="discountCode"
                     onChange={this.handleChangeForm}
-                    value={this.state.discountCode}
-                    placeholder="Gift card or discount code"
+                    value=""
+                    placeholder="Carte cadeau ou code de réduction"
                     className="mr-2 col"
                   />
                   <button
@@ -782,26 +782,26 @@ class CheckoutPage extends Component {
                     disabled={!this.props.checkout || undefined}
                     onClick={this.handleDiscountChange}
                   >
-                    Apply
+                    Appliquer
                   </button>
                 </div>
                 <div className="py-3 borderbottom border-color-black">
                   {[
                     {
-                      name: 'Subtotal',
+                      name: 'Total',
                       amount: checkout.live ? checkout.live.subtotal.formatted_with_symbol : '',
                     },
                     {
-                      name: 'Tax',
+                      name: 'Impôt',
                       amount: checkout.live ? checkout.live.tax.amount.formatted_with_symbol : '',
                     },
                     {
-                      name: 'Shipping',
-                      amount: selectedShippingOption ? `${selectedShippingOption.description} - ${selectedShippingOption.price.formatted_with_symbol}` : 'No shipping method selected',
+                      name: 'Expédition',
+                      amount: selectedShippingOption ? `${selectedShippingOption.description} - ${selectedShippingOption.price.formatted_with_symbol}` : "Aucun mode d'expédition sélectionné",
                     },
                     {
-                      name: 'Discount',
-                      amount: (checkout.live && checkout.live.discount && checkout.live.discount.code) ? `Saved ${checkout.live.discount.amount_saved.formatted_with_symbol}` : 'No discount code applied',
+                      name: 'Remise',
+                      amount: (checkout.live && checkout.live.discount && checkout.live.discount.code) ? `Economiser ${checkout.live.discount.amount_saved.formatted_with_symbol}` : 'Aucun code de réduction appliqué',
                     }
                   ].map((item, i) => (
                     <div key={i} className="d-flex justify-content-between align-items-center mb-2">
@@ -814,10 +814,10 @@ class CheckoutPage extends Component {
                 </div>
                 <div className="d-flex justify-content-between align-items-center mb-2 pt-3">
                   <p className="font-size-title font-weight-semibold">
-                    Total amount
+                    Montant total
                   </p>
                   <p className="text-right font-weight-semibold font-size-title">
-                    $ { checkout.live ? checkout.live.total.formatted_with_code : '' }
+                    { checkout.live ? checkout.live.total.formatted_with_symbol : '' }
                   </p>
                 </div>
               </div>
