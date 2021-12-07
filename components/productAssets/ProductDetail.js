@@ -129,9 +129,9 @@ class ProductDetail extends Component {
     return (
       <div>
         {/* Product Summary */}
-        <div onClick={this.handleReviewClick} className="cursor-pointer">
+        {/*<div onClick={this.handleReviewClick} className="cursor-pointer">
           <ReviewStars count={4.5} />
-        </div>
+          </div>*/}
         <p className="font-size-display3 font-family-secondary mt-2 mb-2">
           {name}
         </p>
@@ -152,10 +152,10 @@ class ProductDetail extends Component {
           <button onClick={this.handleAddToCart} disabled={soldOut}
               className="h-56 bg-black font-color-white pl-3 pr-4 d-flex align-items-center flex-grow-1" type="button">
             <span className="flex-grow-1 mr-3 text-center">
-              { soldOut ? 'Sold out' : 'Add to cart' }
+              { soldOut ? 'Épuisé' : 'Ajouter au panier' }
             </span>
             <span className="border-left border-color-white pl-3">
-            {priceSymbol}{this.getPrice()}
+            {/*priceSymbol*/}CFA {this.getPrice()}
             </span>
           </button>
         </div>

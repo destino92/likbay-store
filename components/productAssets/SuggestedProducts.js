@@ -11,16 +11,16 @@ class SuggestedProducts extends Component {
       <div className="custom-container py-5 my-5">
         <div className="d-flex flex-column align-items-center mb-5 pb-4">
           <p className="font-color-medium mb-4">
-            Suggested products
+            Produits suggérés
           </p>
           <p
             className="text-center font-size-display1 mb-3 font-weight-medium"
             style={{ maxWidth: '32rem' }}
           >
-            You may also like to check out these products.
+            Vous aimerez peut-être aussi découvrir ces produits.
           </p>
         </div>
-        <ProductRow products={products.slice(0, 4)} />
+        <ProductRow products={products.sort(() => 0.5 - Math.random()).slice(0,4)} />
       </div>
     );
   }

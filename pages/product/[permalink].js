@@ -66,7 +66,7 @@ export default function Product() {
   return (
     <Root>
       <Head>
-        <title>{ product.name } | commerce</title>
+        <title>{ product.name } | likbay</title>
       </Head>
 
       <div className="py-5 my-5">
@@ -102,17 +102,16 @@ export default function Product() {
             onClick={toggleShipping}
             className="d-flex cursor-pointer py-3 justify-content-between font-weight-medium"
           >
-            Shipping and returns
+            Livraison et retour
             <img src="/icon/plus.svg" />
           </div>
           <Collapse isOpened={showShipping}>
             <div className="pb-4 font-color-medium">
-              Arrives in 5 to 7 days, returns accepted within 30
-              days. For more information, click here.
+              Les produits sont livrer dans les prochaines 48 heures après commandes
             </div>
           </Collapse>
           <div className="h-1 border-bottom border-color-black" />
-          <div
+          {/*<div
             onClick={toggleDetails}
             className="d-flex cursor-pointer py-3 justify-content-between font-weight-medium"
           >
@@ -127,12 +126,12 @@ export default function Product() {
               }}
             />
           </Collapse>
-          <div className="h-1 borderbottom border-color-black" />
+            <div className="h-1 borderbottom border-color-black" />*/}
         </div>
       </div>
     </div>
 
-    <ClientReview />
+    {/*<ClientReview />*/}
     <SuggestedProducts />
     <ExploreBanner />
     <SocialMedia />
