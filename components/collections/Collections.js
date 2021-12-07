@@ -99,7 +99,7 @@ class Collections extends Component {
 
     return (
       <div className="collection">
-        {categories.map(category => (
+        {categories.filter(category => category.products).map(category => (
           <div key={category.id}>
               <p className="font-size-title font-weight-medium mb-4" id={category.slug}>
                 {category.name}
