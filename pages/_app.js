@@ -30,7 +30,10 @@ const MyApp = ({Component, pageProps}) => {
       })
     });
 
-    commerce.categories.list().then((res) => {
+    commerce.categories.list({
+      limit: 50
+    }).then((res) => {
+      console.log(res)
       store.dispatch({
         type: 'STORE_CATEGORIES',
         payload: res.data
