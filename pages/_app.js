@@ -21,8 +21,7 @@ const MyApp = ({Component, pageProps}) => {
     store.dispatch(setCustomer());
 
     commerce.products.list({
-      limit: 50,
-      page: 2
+      limit: 200
     }).then((res) => {
       console.log(res)
       store.dispatch({
