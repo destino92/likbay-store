@@ -47,8 +47,8 @@ class Collections extends Component {
 
     return (
       <>
-        {categories.map(category => (
-          <div key={category.id} className="custom-container">
+        {categories.filter(category => category.products).map(category => (
+          category.products && <div key={category.id} className="custom-container">
             <div className="row">
               <div className="col-2 d-none d-lg-block position-relative">
                 <p className="font-size-title font-weight-medium mb-3">
