@@ -11,7 +11,7 @@ export default connect(({ categories }) => ({ categories }))(
     <div className={className}>
       <h3 className="font-size-title font-weight-medium mb-3">Products</h3>
       <ul style={{ 'listStyleType': 'none' }} className="pl-0">
-        { categories.map(category => (
+        { categories.filter(category => category.products).map(category => (
           <li key={category.slug}>
             <Link href={`/collection#${category.slug}`}>
               <a
