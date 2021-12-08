@@ -155,7 +155,7 @@ class Header extends Component {
               className="position-relative cursor-pointer"
               onClick={this.toggleCart}
             >
-              <Animation className={`${cart.total_items !== 0 ? "cart-count-bg" : ""}`} />
+              <Animation className={`${cart.total_items !== 0 ? 'cart-count-bg' : ''}`} />
               <div className="cart-count position-absolute font-size-tiny font-weight-bold">
                 {cart.total_items}
               </div>

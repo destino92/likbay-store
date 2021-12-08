@@ -21,7 +21,7 @@ class ProductsBanner extends Component {
             Jettez un coup d&#39;oeil.
           </p>
           <Link href="/collection">
-            <a className="d-flex py-3 px-3 align-items-center font-color-white bg-secondaire" style={{borderRadius: "40px"}}>
+            <a className="d-flex py-3 px-3 align-items-center font-color-white bg-secondaire" style={{borderRadius: '40px'}}>
               <p>Voir plus</p>
             </a>
           </Link>

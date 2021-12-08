@@ -15,7 +15,7 @@ export default function Animation( props ) {
 
   return (
     <div className="cart-animation">
-      <div style={{width:"32px",height:"32px",overflow:"hidden",margin:"0 auto",outline:"none"}} title="" role="button" tabindex="0">
+      <div style={{width:'32px',height:'32px',overflow:'hidden',margin:'0 auto',outline:'none'}} title="" role="button" tabIndex="0">
         <img src="/icon/shopping-bag.svg" alt=""/>
       </div>
     </div>
