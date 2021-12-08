@@ -1,22 +1,9 @@
-header {
-  z-index: 10;
-}
-
 .header {
   padding: 1.5rem 3rem;
-  background-color: transparent;
+  background-color: #fff;
   border-bottom: 1px solid;
-  border-color: transparent;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
-    filter 0.01s linear 0.2s;
-  filter: invert(1);
-
-  &.invert {
-    background-color: #fff;
-    border-color: #000;
-    filter: none;
-    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  }
+  border-color: $principal;
+  color: $principal;
 
   @include small-xs {
     padding: 1.25rem 1.5rem 1.25rem 1rem;
@@ -45,6 +32,11 @@ header {
     right: -4px;
     top: -4px;
     max-width: 10px;
+  }
+
+  .cart-count-bg {
+    color:#fff;
+    background-color: $secondaire;
   }
 
   .login {

@@ -15,15 +15,14 @@ class ProductsBanner extends Component {
             Présentation de nos derniers produits
           </p>
           <p
-            className="text-center font-size-display1 mb-3 font-weight-medium"
+            className="text-center font-size-display1 mb-3 font-weight-medium font-color-principal"
             style={{ maxWidth: '32rem' }}
           >
             Jettez un coup d&#39;oeil.
           </p>
           <Link href="/collection">
-            <a className="d-flex py-3 align-items-center font-color-black borderbottom border-color-black">
-              <p className="mr-3">Voir plus</p>
-              <img src="/icon/arrow-long-right.svg" />
+            <a className="d-flex py-3 px-3 align-items-center font-color-white bg-secondaire" style={{borderRadius: "40px"}}>
+              <p>Voir plus</p>
             </a>
           </Link>
         </div>

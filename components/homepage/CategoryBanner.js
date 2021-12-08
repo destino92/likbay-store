@@ -11,7 +11,7 @@ class CategoryBanner extends Component {
     return (
       <div className="bg-brand300 py-5 collection-banner">
         <div className="custom-container py-5">
-          <p className="font-size-display2 my-3 py-5 text-center font-family-secondary">
+          <p className="font-size-display2 my-3 py-5 text-center font-color-principal">
             Categories
           </p>
 
@@ -22,7 +22,7 @@ class CategoryBanner extends Component {
                 className="col-12 col-md-4 collection-item mb-5"
               >
                 <Link href={`/collection#${item.slug}`} key={item.id}>
-                  <a className="align-items-center font-color-black flex-column cursor-pointer mb-5">
+                  <a className="align-items-center font-color-secondaire flex-column cursor-pointer mb-5">
                     <div>
                       { item.meta?.image && (
                         <div

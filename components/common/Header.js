@@ -49,39 +49,14 @@ class Header extends Component {
     };
 
     this.header = React.createRef();
-
-    this.animate = this.animate.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
-    this.toggleCart = this.toggleCart.bind(this);
     this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
-    this.toggleAddToCartAnimation = this.toggleAddToCartAnimation.bind(this);
-    this.handleAddToCartToggle = this.handleAddToCartToggle.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('Commercejs.Cart.Item.Added', this.handleAddToCartToggle);
-
     this.setState({
       loggedIn: commerce.customer.isLoggedIn(),
     });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('Commercejs.Cart.Item.Added', this.handleAddToCartToggle);
-  }
-
-  toggleCart() {
-    const { showCart } = this.state;
-    this.setState({
-      showCart: !showCart,
-    });
-  }
-
-  handleScroll() {
-    window.requestAnimationFrame(this.animate);
   }
 
   handleLogout() {
@@ -91,47 +66,13 @@ class Header extends Component {
     });
   }
 
-  animate() {
-    const { transparent } = this.props;
-
-    if (!transparent) {return;}
-
-    if (window.scrollY > 10) {
-      this.header.current.classList.add('invert');
-    } else {
-      this.header.current.classList.remove('invert');
-    }
-  }
+ 
 
   toggleMobileMenu() {
     const { showMobileMenu } = this.state;
     this.setState({ showMobileMenu: !showMobileMenu });
-
-    if (!showMobileMenu) {
-      this.header.current.classList.add('invert');
-    } else {
-      this.animate();
-    }
   }
 
-  /**
-   * Toggle add to cart animation to true
-   */
-  toggleAddToCartAnimation() {
-    const { playAddToCartAnimation } = this.state;
-
-    this.setState({ playAddToCartAnimation: !playAddToCartAnimation });
-  }
-
-  /**
-   * Call toggle of add to cart animation and set time out to false
-   */
-  handleAddToCartToggle() {
-    this.toggleAddToCartAnimation();
-    setTimeout(() => {
-      this.toggleAddToCartAnimation();
-    }, 3000)
-  }
 
   renderLoginLogout() {
     const { customer } = this.props;
@@ -175,7 +116,7 @@ class Header extends Component {
     const { transparent, cart } = this.props;
 
     return (
-      <header className="position-fixed top-0 left-0 right-0 font-weight-semibold no-print">
+      <header className="top-0 left-0 right-0 font-weight-semibold no-print">
         <Cart isOpen={showCart} toggle={value => this.toggleCart(value)} />
         <div
           ref={this.header}
@@ -185,7 +126,7 @@ class Header extends Component {
         >
           <div className="d-none d-sm-flex">
             <Link href="/collection">
-              <a className="mr-4 font-color-black">Shop</a>
+              <a className="mr-4">Shop</a>
             </Link>
             {/*<Link href="/about">
               <a className="font-color-black">A propos</a>
@@ -214,7 +155,7 @@ class Header extends Component {
               className="position-relative cursor-pointer"
               onClick={this.toggleCart}
             >
-              <Animation isStopped={ this.state.playAddToCartAnimation } />
+              <Animation className={`${cart.total_items !== 0 ? "cart-count-bg" : ""}`} />
               <div className="cart-count position-absolute font-size-tiny font-weight-bold">
                 {cart.total_items}
               </div>

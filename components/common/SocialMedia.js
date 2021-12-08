@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const imagesInfo = [
   {
-    image: '/images/insta/1.png',
+    image: '/images/insta/1.jpg',
     translateRatio: -50
   },
   {
@@ -76,18 +76,16 @@ export default class SocialMedia extends React.Component {
           <div className="row footer-follow--header">
             <div className="px-3 footer-follow--title">
               <p
-                className="font-size-display1 mb-3"
+                className="font-size-display1 mb-3 font-color-principal"
                 style={{ maxWidth: '26rem' }}
               >
                 Suivez-nous sur Instagram pour plus de mises à jour
               </p>
-              <div className="d-flex">
-                <Link href="/about">
-                  <a className="d-flex py-3 align-items-center font-color-black borderbottom border-color-black">
-                    <p className="mr-3">Suivez-nous</p>
-                    <img src="/icon/arrow-long-right.svg" alt="Arrow icon"/>
+              <div className="d-flex ">
+                  <a className="d-flex py-3 px-3 align-items-center font-color-white bg-secondaire" style={{borderRadius: "40px"}} target="_blank" href="https://www.instagram.com/likbay/
+">
+                    <p>Suivez-nous</p>
                   </a>
-                </Link>
               </div>
             </div>
           </div>

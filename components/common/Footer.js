@@ -5,7 +5,7 @@ const Footer = () => (
     <div className="custom-container mb-5 pb-5 pt-5">
       <div className="row">
         <div className="col-12 col-sm-6 col-md-4">
-          <p className="font-family-secondary font-size-display1 mb-4">
+          <p className="font-size-display1 mb-4">
             Likbay
           </p>
           <div className="d-flex font-color-medium mb-5 pb-3 pb-md-0 mb-md-0">
@@ -48,13 +48,13 @@ const Footer = () => (
           </div>
         </div>
         <div className="col-12 col-sm-6 col-md-4">
-          <p className="font-family-secondary font-size-display1 mb-4">
+          <p className="font-size-display1 mb-4">
             Socialisons
           </p>
           <div className="d-flex font-color-medium mb-5 pb-3 pb-md-0 mb-md-0">
             <div className="pr-5">
               <a
-                href="#"
+                href="https://twitter.com/LikbayC"
                 className="mb-3 d-block font-color-medium"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -71,16 +71,16 @@ const Footer = () => (
               </a>
             </div>
             <div>
-              {/*<a
-                href="https://angel.co/company/chec"
+              <a
+                href="https://www.facebook.com/likbay.co"
                 className="mb-3 d-block font-color-medium"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Angel
-              </a>*/}
+                Facebook
+              </a>
               <a
-                href="https://www.linkedin.com/company/chec-chec-commerce-inc.-/"
+                href="https://www.linkedin.com/in/likbay-group-576ab71b7/"
                 className="d-block font-color-medium"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -91,7 +91,7 @@ const Footer = () => (
           </div>
         </div>
         <div className="col-12 col-md-4">
-          <p className="font-family-secondary font-size-display1 mb-3">
+          <p className="font-size-display1 mb-3">
             Newsletter
           </p>
           <div className="position-relative">

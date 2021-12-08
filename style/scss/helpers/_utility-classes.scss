@@ -229,6 +229,10 @@
 // Background
 // --------------------------------
 
+.bg-secondaire {
+  background-color: $secondaire !important;
+}
+
 .bg-white {
   background: #fff !important;
 }
@@ -474,6 +478,14 @@
 // --------------------------------
 // Font Color
 // --------------------------------
+
+.font-color-principal {
+  color: $principal !important;
+}
+
+.font-color-secondaire {
+  color: $secondaire !important;
+}
 
 .font-color-black {
   color: $black !important;

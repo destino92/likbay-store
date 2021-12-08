@@ -15,12 +15,9 @@ export default function Animation( props ) {
 
   return (
     <div className="cart-animation">
-      <Lottie
-        options={defaultOptions}
-        height={32}
-        width={32}
-        isStopped={!props.isStopped}
-      />
+      <div style={{width:"32px",height:"32px",overflow:"hidden",margin:"0 auto",outline:"none"}} title="" role="button" tabindex="0">
+        <img src="/icon/shopping-bag.svg" alt=""/>
+      </div>
     </div>
   );
 }
