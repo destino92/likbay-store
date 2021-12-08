@@ -62,7 +62,7 @@ const Footer = () => (
                 Twitter
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/likbay/"
                 className="d-block font-color-medium"
                 target="_blank"
                 rel="noopener noreferrer"
