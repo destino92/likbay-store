@@ -133,7 +133,7 @@ export default function Product() {
 
     {/*<ClientReview />*/}
     <SuggestedProducts />
-    <ExploreBanner />
+    {/*<ExploreBanner />*/}
     <SocialMedia />
     <Footer />
   </Root>

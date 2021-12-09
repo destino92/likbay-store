@@ -132,7 +132,7 @@ class ProductDetail extends Component {
         {/*<div onClick={this.handleReviewClick} className="cursor-pointer">
           <ReviewStars count={4.5} />
           </div>*/}
-        <p className="font-size-display3 font-family-secondary mt-2 mb-2">
+        <p className="font-size-display3 font-color-principal mt-2 mb-2">
           {name}
         </p>
         <div className="mb-4 pb-3 font-size-subheader">{(description || '').replace(reg, '')}</div>
@@ -150,7 +150,7 @@ class ProductDetail extends Component {
         {/* Add to Cart & Price */}
         <div className="d-flex py-4">
           <button onClick={this.handleAddToCart} disabled={soldOut}
-              className="h-56 bg-black font-color-white pl-3 pr-4 d-flex align-items-center flex-grow-1" type="button">
+              className="h-56 font-color-white pl-3 pr-4 d-flex align-items-center flex-grow-1 bg-principal" style={{borderRadius:"30px"}} type="button">
             <span className="flex-grow-1 mr-3 text-center">
               { soldOut ? 'Épuisé' : 'Ajouter au panier' }
             </span>
