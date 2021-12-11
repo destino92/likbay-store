@@ -165,7 +165,6 @@ export default class PaymentDetails extends Component {
         </p>
         <div className="border border-color-gray400 mb-5">
           { this.renderTestGateway() }
-          { this.renderStripe() }
           { /* todo support other gateways here */ }
         </div>
       </>

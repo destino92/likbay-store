@@ -18,7 +18,7 @@ class Dropdown extends Component {
       <div
         className="position-relative">
         <div
-          className={`dropdown bg-white d-flex align-items-center justify-content-between ${isOpen &&
+          className={`dropdown form-control d-flex align-items-center justify-content-between ${isOpen &&
             'border-color-black'}`}
         >
           <p className="font-color-medium">{this.props.value || this.props.placeholder }</p>

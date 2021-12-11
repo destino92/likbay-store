@@ -89,8 +89,8 @@ class Cart extends Component {
             >
               {/* Cart Header */}
               <div className="px-4 px-md-5">
-                <div className="pt-4 pb-3 borderbottom border-color-black d-flex justify-content-between align-items-center">
-                  <p className="font-family-secondary font-size-subheader">
+                <div className="pt-4 pb-3 borderbottom border-color-principal font-color-principal d-flex justify-content-between align-items-center">
+                  <p className="font-size-subheader font-weight-semibold">
                     Panier
                   </p>
                   <button
@@ -120,19 +120,19 @@ class Cart extends Component {
                       <p className="font-color-light mr-2 font-weight-regular">
                         Total:
                       </p>
-                      <p>{cart.subtotal.formatted_with_symbol}</p>
+                      <p className="font-weight-bold font-color-principal">{cart.subtotal.formatted_with_symbol}</p>
                     </div>
                     <div className="row">
                       <div className="col-6 d-none d-md-block">
                         <Link href="/collection">
-                          <a className="h-56 d-flex align-items-center justify-content-center border border-color-black bg-white w-100 flex-grow-1 font-weight-medium font-color-black px-3">
+                          <a className="h-56 d-flex align-items-center justify-content-center w-100 flex-grow-1 btn-skip px-3">
                           Continuer vos achats
                           </a>
                         </Link>
                       </div>
                       <div className="col-12 col-md-6">
                         <Link href="/checkout">
-                          <a className="h-56 d-flex align-items-center justify-content-center bg-black w-100 flex-grow-1 font-weight-medium font-color-white px-3">
+                          <a className="h-56 d-flex align-items-center justify-content-center w-100 flex-grow-1 btn-valid  px-3">
                             Commander
                           </a>
                         </Link>

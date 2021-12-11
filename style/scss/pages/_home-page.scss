@@ -1,10 +1,15 @@
 $color: rgba(0, 0, 0, 0);
+.hero-section-space {
+  margin-top: 20px;
+}
 
 .hero-section {
   .hero-slide {
-    min-height: 85vh;
-    background-size: cover;
+    min-height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
+    border-radius: 10px;
   }
 
   .circle {

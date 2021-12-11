@@ -49,6 +49,8 @@ class Header extends Component {
     };
 
     this.header = React.createRef();
+    this.handleScroll = this.handleScroll.bind(this);
+    this.toggleCart = this.toggleCart.bind(this);
     this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
@@ -58,6 +60,23 @@ class Header extends Component {
       loggedIn: commerce.customer.isLoggedIn(),
     });
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('Commercejs.Cart.Item.Added', this.handleAddToCartToggle);
+  }
+
+  toggleCart() {
+    const { showCart } = this.state;
+    this.setState({
+      showCart: !showCart,
+    });
+  }
+
+  handleScroll() {
+    window.requestAnimationFrame(this.animate);
+  }
+
 
   handleLogout() {
     this.props.clearCustomer();
@@ -124,14 +143,6 @@ class Header extends Component {
             transparent ? '' : 'invert'
           }`}
         >
-          <div className="d-none d-sm-flex">
-            <Link href="/collection">
-              <a className="mr-4">Shop</a>
-            </Link>
-            {/*<Link href="/about">
-              <a className="font-color-black">A propos</a>
-            </Link>*/}
-          </div>
           <div className="logo-container">
             <img
               src={`/icon/${showMobileMenu ? 'cross' : 'menu'}.svg`}
@@ -148,6 +159,14 @@ class Header extends Component {
                 />
               </a>
             </Link>
+          </div>
+          <div className="d-none d-sm-flex">
+            <Link href="/collection">
+              <a className="font-color-white">Shop</a>
+            </Link>
+            {/*<Link href="/about">
+              <a className="font-color-black">A propos</a>
+            </Link>*/}
           </div>
           <div className="d-flex">
             {/* process.browser && this.renderLoginLogout() */}

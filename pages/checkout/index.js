@@ -81,10 +81,10 @@ class CheckoutPage extends Component {
       selectedGateway: 'test_gateway',
       loading: false,
       // Optional if using Stripe, used to track steps of checkout using Stripe.js
-      stripe: {
-        paymentMethodId: null,
-        paymentIntentId: null,
-      },
+      //stripe: {
+      //  paymentMethodId: null,
+      //  paymentIntentId: null,
+      //},
     }
 
     this.captureOrder = this.captureOrder.bind(this);
@@ -546,34 +546,37 @@ class CheckoutPage extends Component {
 
         <div className="custom-container py-5 my-4 my-sm-5">
           {/* Row */}
-          <div className="row mt-4">
+          <div className='row'>
             <div className="col-12 col-md-10 col-lg-6 offset-md-1 offset-lg-0">
-              {/* Breadcrumbs */}
               <div className="d-flex pb-4 breadcrumb-container">
                 <Link href="/collection">
-                  <a className="font-color-dark font-size-caption text-decoration-underline cursor-pointer">
+                  <a className="font-color-principal font-size-caption text-decoration-underline cursor-pointer">
                     Panier
                   </a>
                 </Link>
                 <img src="/icon/arrow-right.svg" className="w-16 mx-1" alt="Arrow icon"/>
-                <div className="font-size-caption font-weight-bold cursor-pointer">
+                <div className="font-size-caption font-weight-bold font-color-principal cursor-pointer">
                   Commande
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="row mt-4">
+            <div className="col-12 col-md-10 col-lg-6 offset-md-1 offset-lg-0">
               {
                 checkout
                 && (
-                  <form onChange={this.handleChangeForm} onSubmit={this.captureOrder}>
-                    <p className="font-size-subheader font-weight-semibold mb-4">
+                  <form onChange={this.handleChangeForm} onSubmit={this.captureOrder} className='checkout-form'>
+                    <p className="font-size-subheader font-color-secondaire font-weight-semibold mb-4">
                       Client
                     </p>
                     <div className="row">
-                      <div className="col-12 col-sm-6 mb-3">
+                      <div className="col-12 col-sm-6 mb-3 form-group">
                         <label className="w-100">
-                          <p className="mb-1 font-size-caption font-color-light">
+                          <p className="mb-1 font-size-caption font-color-light form-label">
                             Prénom*
                           </p>
-                          <input required name="customer[first_name]" autoComplete="given-name" value={this.state['customer[first_name]']} className="rounded-0 w-100" />
+                          <input required name="customer[first_name]" autoComplete="prénom" value={this.state['customer[first_name]']} className="w-100 form-control" />
                         </label>
                       </div>
                       <div className="col-12 col-sm-6 mb-3">
@@ -581,7 +584,7 @@ class CheckoutPage extends Component {
                           <p className="mb-1 font-size-caption font-color-light">
                             Nom de famille*
                           </p>
-                          <input required name="customer[last_name]" autoComplete="family-name" value={this.state['customer[last_name]']} className="rounded-0 w-100" />
+                          <input required name="customer[last_name]" autoComplete="family-name" value={this.state['customer[last_name]']} className="w-100 form-control" />
                         </label>
                       </div>
                     </div>
@@ -596,7 +599,7 @@ class CheckoutPage extends Component {
                             name="customer[phone]"
                             autoComplete="tel"
                             value={this.state['customer[phone]']}
-                            className="rounded-0 w-100"
+                            className="w-100 form-control"
                           />
                         </label>
                       </div>
@@ -610,12 +613,12 @@ class CheckoutPage extends Component {
                             name="customer[email]"
                             autoComplete="email"
                             value={this.state['customer[email]']}
-                            className="rounded-0 w-100"
+                            className="w-100 form-control"
                           />
                         </label>
                       </div>
                     </div>
-                    <p className="font-size-subheader font-weight-semibold mb-4">
+                    <p className="font-size-subheader font-weight-semibold mb-4 font-color-secondaire">
                       Adresse de livraison
                     </p>
                     <div className="mb-5">
@@ -675,7 +678,7 @@ class CheckoutPage extends Component {
                         <p className="mb-1 font-size-caption font-color-light">
                           Notes de commande (facultatif)
                         </p>
-                        <textarea name="orderNotes" value={this.state.orderNotes} className="rounded-0 w-100" />
+                        <textarea name="orderNotes" value={this.state.orderNotes} className="w-100 form-control" />
                       </label>
                     </div>
 
@@ -719,11 +722,11 @@ class CheckoutPage extends Component {
                     </>}
 
                     <p className="checkout-error">
-                      { !selectedShippingOption ? 'Select a shipping option!' : '' }
+                      { !selectedShippingOption ? 'Selectionner une option de livraison!' : '' }
                     </p>
                     <button
                       type="submit"
-                      className="bg-black font-color-white w-100 border-none h-56 font-weight-semibold d-lg-block"
+                      className="font-color-white w-100 border-none h-56 font-weight-semibold d-lg-block btn-valid"
                       disabled={!selectedShippingOption}
                     >
                       Commander
@@ -733,9 +736,9 @@ class CheckoutPage extends Component {
               }
             </div>
 
-            <div className="col-12 col-lg-5 col-md-10 offset-md-1 mt-4 mt-lg-0">
+            <div className="col-12 col-lg-5 col-md-10 offset-md-1 mt-4 mt-lg-0 order-first order-sm-last">
               <div className="bg-brand200 p-lg-5 p-3 checkout-summary">
-                <div className="borderbottom font-size-subheader border-color-gray400 pb-2 font-weight-medium">
+                <div className="borderbottom font-size-subheader border-color-principal font-color-principal pb-2 font-weight-semibold">
                   Votre commande
                 </div>
                 <div className="pt-3 borderbottom border-color-gray400">
@@ -750,7 +753,7 @@ class CheckoutPage extends Component {
                         }
                         <div className="d-flex flex-grow-1">
                           <div className="flex-grow-1">
-                            <p className="font-weight-medium">
+                            <p className="font-weight-semibold font-color-principal">
                               {item.product_name}
                             </p>
                             <p className="font-color-light">Quantité: {item.quantity}</p>
@@ -762,7 +765,7 @@ class CheckoutPage extends Component {
                               )}
                             </div>
                           </div>
-                          <div className="text-right font-weight-semibold">
+                          <div className="text-right font-color-secondaire font-weight-medium">
                             {item.line_total.formatted_with_symbol}
                           </div>
                         </div>
@@ -776,17 +779,17 @@ class CheckoutPage extends Component {
                     onChange={this.handleChangeForm}
                     value=""
                     placeholder="Carte cadeau ou code de réduction"
-                    className="mr-2 col"
+                    className="mr-2 col coupon"
                   />
                   <button
-                    className="font-color-white border-none font-weight-medium px-4 col-auto"
+                    className="font-color-white border-none font-weight-semibold px-4 col-auto btn-valid"
                     disabled={!this.props.checkout || undefined}
                     onClick={this.handleDiscountChange}
                   >
                     Appliquer
                   </button>
                 </div>
-                <div className="py-3 borderbottom border-color-black">
+                <div className="py-3 borderbottom border-color-principal">
                   {[
                     {
                       name: 'Total',
@@ -845,7 +848,7 @@ CheckoutPage.propTypes = {
 
 // If using Stripe, this provides context to the page so we can use `stripe` and
 // `elements` as props.
-const InjectedCheckoutPage = (passProps) => {
+{/*const InjectedCheckoutPage = (passProps) => {
   return (
     <Elements stripe={passProps.stripe}>
       <ElementsConsumer>
@@ -856,7 +859,7 @@ const InjectedCheckoutPage = (passProps) => {
     </Elements>
   );
 };
-
+*/}
 export default withRouter(
   connect(
     ({ checkout: { checkoutTokenObject, shippingOptions }, cart, customer, orderReceipt }) => ({
@@ -873,5 +876,5 @@ export default withRouter(
       dispatchSetDiscountCodeInCheckout,
       dispatchCaptureOrder,
     },
-  )(InjectedCheckoutPage),
+  )(CheckoutPage),
 );

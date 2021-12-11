@@ -18,7 +18,7 @@ const params = {
   }
 };
 const images = [
-  '/images/home-1.jpg',
+  //'/images/home-1.jpg',
   '/images/home-2.jpg',
   '/images/home-3.jpg',
   '/images/home-4.jpg',
@@ -27,33 +27,24 @@ const images = [
 export default function HeroSection() {
   SwiperCore.use([Autoplay, EffectFade]);
   return (
-    <div className="hero-section position-relative">
-      <Swiper {...params}>
-        {images.map((image, index) => (
-          <SwiperSlide key={image}>
-            <div
-              className="hero-slide d-flex align-items-center justify-content-center flex-column font-color-white py-5"
-              style={{
-                backgroundImage: `url("${image}")`,
-                backgroundSize: 'cover',
-                resize: 'both'
-              }}
-            >
-              {/*<p className="font-size-display5 font-family-secondary mb-4 text-center hero-header">
-                Le shopping depuis chez vous
-              </p>
-              <p className="text-transform-uppercase font-size-title mb-5 hero-subheader">
-                A range of products for you
-              </p>
-              <Link href="/collection">
-                <a className="d-flex align-items-center bg-transparent border border-color-white h-56 px-5 font-color-white hero-btn">
-                  Shop now
-                </a>
-            </Link>*/}
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="container">
+      <div className="hero-section-space">
+        <div className="hero-section position-relative">
+          <Swiper {...params}>
+            {images.map((image, index) => (
+              <SwiperSlide key={image}>
+                <div
+                  className="hero-slide d-flex align-items-center justify-content-center flex-column font-color-white"
+                  style={{
+                    backgroundImage: `url("${image}")`,
+                  }}
+                >
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
     </div>
   );
 }

@@ -150,7 +150,7 @@ class ProductDetail extends Component {
         {/* Add to Cart & Price */}
         <div className="d-flex py-4">
           <button onClick={this.handleAddToCart} disabled={soldOut}
-              className="h-56 font-color-white pl-3 pr-4 d-flex align-items-center flex-grow-1 bg-principal" style={{borderRadius:"30px"}} type="button">
+              className="h-56 pl-3 pr-4 d-flex align-items-center flex-grow-1 btn-valid" type="button">
             <span className="flex-grow-1 mr-3 text-center">
               { soldOut ? 'Épuisé' : 'Ajouter au panier' }
             </span>

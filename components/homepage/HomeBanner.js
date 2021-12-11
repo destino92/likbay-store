@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function HomeBanner() {
   return (
-    <div className="p-5">
+    <div className="p-1">
       <p
         className="font-size-display1 mt-5 text-center mx-auto text-uppercase font-color-principal"
         style={{ maxWidth: '53rem' }}

@@ -1,9 +1,11 @@
 .header {
-  padding: 1.5rem 3rem;
-  background-color: #fff;
-  border-bottom: 1px solid;
-  border-color: $principal;
-  color: $principal;
+  padding: 1rem 3rem;
+  background: rgb(0,87,162);
+  background: -moz-linear-gradient(148deg, rgba(0,87,162,1) 0%, rgba(0,109,203,1) 49%, rgba(51,138,213,1) 100%);
+  background: -webkit-linear-gradient(148deg, rgba(0,87,162,1) 0%, rgba(0,109,203,1) 49%, rgba(51,138,213,1) 100%);
+  background: linear-gradient(148deg, rgba(0,87,162,1) 0%, rgba(0,109,203,1) 49%, rgba(51,138,213,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0057a2",endColorstr="#338ad5",GradientType=1);
+  color: white;
 
   @include small-xs {
     padding: 1.25rem 1.5rem 1.25rem 1rem;
@@ -12,10 +14,10 @@
   .logo-container {
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    //position: absolute;
+    //top: 50%;
+    //left: 50%;
+    //transform: translate(-50%, -50%);
 
     @include small-xs {
       position: static;
