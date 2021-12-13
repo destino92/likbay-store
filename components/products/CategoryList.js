@@ -18,7 +18,7 @@ export default connect(({ categories }) => ({ categories }))(
                 style={{ 'fontWeight': 'bold' }}
                 key={category.id} className="pb-2 cursor-pointer font-color-secondaire"
               >
-                { category.name }{"     "}<span className="badge rounded-pill bg-principal font-color-white">{ category.products }</span>
+                { category.name }{'     '}<span className="badge rounded-pill bg-principal font-color-white">{ category.products }</span>
               </a>
             </Link>
           </li>
