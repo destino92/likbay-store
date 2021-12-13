@@ -12,7 +12,7 @@ export default function HomeBanner() {
       </p>
       <div className="d-flex align-items-center justify-content-center mt-3 mb-5">
         <Link href="/about">
-          <a className="d-flex py-3 px-3 align-items-center font-color-white bg-secondaire" style={{borderRadius: '40px'}}>
+          <a className="d-flex py-3 px-3 align-items-center btn-skip">
             <p >En savoir plus</p>
           </a>
         </Link>

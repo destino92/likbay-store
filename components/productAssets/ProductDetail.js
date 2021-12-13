@@ -117,6 +117,7 @@ class ProductDetail extends Component {
   render() {
     const {
       name,
+      attributes,
       description,
       price,
       variant_groups: variantGroups,
@@ -135,6 +136,7 @@ class ProductDetail extends Component {
         <p className="font-size-display3 font-color-principal mt-2 mb-2">
           {name}
         </p>
+        <span className="mb-4 badge bg-secondaire font-color-white">{attributes[0].value}</span>
         <div className="mb-4 pb-3 font-size-subheader">{(description || '').replace(reg, '')}</div>
 
         {/* Product Variant */}

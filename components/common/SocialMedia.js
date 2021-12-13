@@ -82,7 +82,7 @@ export default class SocialMedia extends React.Component {
                 Suivez-nous sur Instagram pour plus de mises à jour
               </p>
               <div className="d-flex ">
-                  <a className="d-flex py-3 px-3 align-items-center font-color-white bg-secondaire" style={{borderRadius: '40px'}} target="_blank" rel="noreferrer" href="https://www.instagram.com/likbay/
+                  <a className="d-flex py-3 px-3 align-items-center btn-skip" target="_blank" rel="noreferrer" href="https://www.instagram.com/likbay/
 ">
                     <p>Suivez-nous</p>
                   </a>

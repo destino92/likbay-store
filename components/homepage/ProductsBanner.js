@@ -9,7 +9,7 @@ class ProductsBanner extends Component {
     const { products } = this.props;
 
     return (
-      <div className="custom-container py-5 my-5">
+      <div className="custom-container py-5 mt-5">
         <div className="d-flex flex-column align-items-center mb-5 pb-4">
           <p className="font-color-medium mb-4">
             Présentation de nos derniers produits
@@ -21,7 +21,7 @@ class ProductsBanner extends Component {
             Jettez un coup d&#39;oeil.
           </p>
           <Link href="/collection">
-            <a className="d-flex py-3 px-3 align-items-center font-color-white bg-secondaire" style={{borderRadius: '40px'}}>
+            <a className="d-flex py-3 px-3 align-items-center btn-skip">
               <p>Voir plus</p>
             </a>
           </Link>

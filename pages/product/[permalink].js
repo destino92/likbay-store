@@ -44,6 +44,7 @@ export default function Product() {
     const fetchProductByPermalink = async (permalink) => {
       try {
         const product = await commerce.products.retrieve(permalink, { type: 'permalink '});
+        console.log(product);
         setProduct(product);
         setLoading(false);
       } catch (error) {

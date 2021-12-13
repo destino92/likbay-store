@@ -18,10 +18,17 @@ const params = {
   }
 };
 const images = [
-  //'/images/home-1.jpg',
+  '/images/home-1.jpg',
   '/images/home-2.jpg',
   '/images/home-3.jpg',
   '/images/home-4.jpg',
+];
+
+const images_m = [
+  'images/1-mobile.jpg',
+  'images/2-mobile.jpg',
+  'images/3-mobile.jpg',
+  'images/4-mobile.jpg',
 ];
 
 export default function HeroSection() {
@@ -29,7 +36,7 @@ export default function HeroSection() {
   return (
     <div className="container">
       <div className="hero-section-space">
-        <div className="hero-section position-relative">
+        <div className="hero-section position-relative d-none d-sm-block">
           <Swiper {...params}>
             {images.map((image, index) => (
               <SwiperSlide key={image}>
@@ -44,6 +51,21 @@ export default function HeroSection() {
             ))}
           </Swiper>
         </div>
+      </div>
+      <div className="hero-section position-relative d-block d-sm-none">
+        <Swiper {...params}>
+          {images_m.map((image, index) => (
+            <SwiperSlide key={image}>
+              <div
+                className="hero-slide-m d-flex align-items-center justify-content-center flex-column font-color-white"
+                style={{
+                  backgroundImage: `url("${image}")`,
+                }}
+              >
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
