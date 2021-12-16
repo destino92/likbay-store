@@ -269,7 +269,7 @@ label {
 }
 
 @media only screen and (max-width: 1023px) {
-  .catalog__row {
+  .catalog_row {
     display: block;
   }
 }
@@ -282,9 +282,9 @@ label {
 }
 
 @media only screen and (max-width: 1279px) {
-  .catalog .card {
+  .catalog_card {
     flex: 0 0 calc(50% - 32px);
     max-width: calc(50% - 32px);
-}
+  }
 }
 
