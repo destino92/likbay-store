@@ -5,7 +5,8 @@ $color: rgba(0, 0, 0, 0);
 
 .hero-section {
   .hero-slide {
-    min-height: 85vh;
+    height: 302px;
+    //width: 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -14,7 +15,7 @@ $color: rgba(0, 0, 0, 0);
 
   .hero-slide-m {
     min-height: 30vh;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 10px;

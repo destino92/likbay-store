@@ -32,6 +32,10 @@ const mobileMenuLinks = [
     link: '/collection'
   },
   {
+    name: 'Produits',
+    link: '/produits'
+  },
+  {
     name: 'A propos',
     link: '/about'
   }
@@ -167,6 +171,11 @@ class Header extends Component {
             {/*<Link href="/about">
               <a className="font-color-black">A propos</a>
             </Link>*/}
+          </div>
+          <div className="d-none d-sm-flex">
+            <Link href="/products">
+              <a className="font-color-white">Products</a>
+            </Link>
           </div>
           <div className="d-flex">
             {/* process.browser && this.renderLoginLogout() */}

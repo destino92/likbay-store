@@ -1,0 +1,370 @@
+import React, {useState} from 'react';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
+import {
+  connectInfiniteHits,
+  connectRefinementList,
+  connectHierarchicalMenu,
+  connectCurrentRefinements,
+  connectStats,
+  connectRange,
+  connectSearchBox,
+  Configure,
+  connectHighlight,
+  InstantSearch,
+} from 'react-instantsearch-dom';
+import { divide } from 'lodash';
+
+
+const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => (
+  <div className="section-filters-bar-actions mx-auto">
+    <form noValidate action="" role="search" className="searchbox-form">
+      <div className='input-group'>
+        <input 
+          className="search-box-input" 
+          type="search"
+          value={currentRefinement}
+          onChange={event => refine(event.currentTarget.value)}
+          placeholder="Rechercher vos produits" 
+        />
+        <span className='input-group-append'>
+          <div className="searchbox-submit d-flex justify-content-center py-auto">
+            <svg className="search-icon align-middle mx-auto px-auto" xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 18 18" stroke="white">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </span>
+      </div>
+      {isSearchStalled ? 'My search is stalled' : ''}
+    </form>
+  </div>
+);
+
+const ClearRefinements = ({ items, refine }) => (
+  <a onClick={() => refine(items)} disabled={!items.length} className="font-weight-semibold font-color-secondaire text-center">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.8809 10C14.2609 10 12.1309 12.13 12.1309 14.75C12.1309 15.64 12.3809 16.48 12.8209 17.2C13.6409 18.58 15.1509 19.5 16.8809 19.5C18.6109 19.5 20.1209 18.57 20.9409 17.2C21.3809 16.49 21.6309 15.64 21.6309 14.75C21.6309 12.13 19.5109 10 16.8809 10ZM18.6809 16.52C18.5309 16.67 18.3409 16.74 18.1509 16.74C17.9609 16.74 17.7709 16.67 17.6209 16.52L16.9009 15.8L16.1509 16.55C16.0009 16.7 15.8109 16.77 15.6209 16.77C15.4309 16.77 15.2409 16.7 15.0909 16.55C14.8009 16.26 14.8009 15.78 15.0909 15.49L15.8409 14.74L15.1209 14.01C14.8309 13.72 14.8309 13.24 15.1209 12.95C15.4109 12.66 15.8909 12.66 16.1809 12.95L16.9009 13.67L17.6009 12.97C17.8909 12.68 18.3709 12.68 18.6609 12.97C18.9509 13.26 18.9509 13.74 18.6609 14.03L17.9609 14.73L18.6809 15.46C18.9809 15.75 18.9809 16.23 18.6809 16.52Z" fill="currentColor"/>
+      <path d="M20.5799 4.02V6.24C20.5799 7.05 20.0799 8.06 19.5799 8.57L19.3999 8.73C19.2599 8.86 19.0499 8.89 18.8699 8.83C18.6699 8.76 18.4699 8.71 18.2699 8.66C17.8299 8.55 17.3599 8.5 16.8799 8.5C13.4299 8.5 10.6299 11.3 10.6299 14.75C10.6299 15.89 10.9399 17.01 11.5299 17.97C12.0299 18.81 12.7299 19.51 13.4899 19.98C13.7199 20.13 13.8099 20.45 13.6099 20.63C13.5399 20.69 13.4699 20.74 13.3999 20.79L11.9999 21.7C10.6999 22.51 8.90992 21.6 8.90992 19.98V14.63C8.90992 13.92 8.50992 13.01 8.10992 12.51L4.31992 8.47C3.81992 7.96 3.41992 7.05 3.41992 6.45V4.12C3.41992 2.91 4.31992 2 5.40992 2H18.5899C19.6799 2 20.5799 2.91 20.5799 4.02Z" fill="currentColor"/>
+    </svg>
+    Réinitialiser Filtres
+  </a>
+);
+
+const CustomClearRefinements = connectCurrentRefinements(ClearRefinements);
+
+const CustomCheckbox = ({
+  item,
+  isFromSearch,
+  refine,
+  searchForItems,
+  createURL,
+}) => {
+  const [checked, setChecked] = useState(false);
+
+  return  <div className="checkbox-line" onClick={event => {
+            event.preventDefault();
+            setChecked(!checked)
+            refine(item.value);
+          }}>
+            <div className="checkbox-wrap">
+              <input id={`category-${item.value}`} name={`category_${item.value}`} aria-describedby="checkbox" type="checkbox" className="w-4 h-4 rounded mr-2" checked={checked} readOnly />
+              <div className="checkbox-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" className='icon-cross'>
+                  <g data-name="Layer 2">
+                    <g data-name="close">
+                      <rect width="12" height="12" transform="rotate(180 12 12)" opacity="0"/>
+                      <path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <label htmlFor="checkbox">
+                  {isFromSearch ? (
+                    <Highlight attribute="label" hit={item} />
+                  ) : (
+                    item.label
+                  )}
+              </label>
+            </div>
+            <p className="checkbox-line-text badge badge-pill">{item.count}</p>
+        </div>
+}
+
+const HierarchicalMenu = ({ items, refine, createURL }) => (
+  <ul>
+    {items.map(item => (
+      <li key={item.label}>
+        <a
+          href={createURL(item.value)}
+          style={{ fontWeight: item.isRefined ? 'bold' : '' }}
+          onClick={event => {
+            event.preventDefault();
+            refine(item.value);
+          }}
+        >
+          {item.label} <span className="badge badge-pill bg-secondaire font-color-white">{item.count}</span>
+        </a>
+        {item.items && (
+          <HierarchicalMenu
+            items={item.items}
+            refine={refine}
+            createURL={createURL}
+          />
+        )}
+      </li>
+    ))}
+  </ul>
+);
+
+const CustomHierarchicalMenu = connectHierarchicalMenu(HierarchicalMenu);
+
+const RefinementList = ({
+  items,
+  isFromSearch,
+  refine,
+  searchForItems,
+  createURL,
+}) => (
+  <div className="sidebar-box-items">
+      {items.map(item => (
+          <CustomCheckbox item={item} refine={refine} createURL={createURL} isFromSearch={isFromSearch} searchForItems />
+      ))}
+  </div>
+);
+
+const CustomRefinementList = connectRefinementList(RefinementList);
+
+const CustomSearchBox = connectSearchBox(SearchBox);
+
+const RangeInput = ({ currentRefinement, min, max, precision, refine }) => (
+  <div className='sidebar-box-items small-space'> 
+    <form className="d-flex items-center form-input-small">
+      <input
+            type="number"
+            min={min}
+            max={max}
+            step={1 / Math.pow(10, precision)}
+            value={currentRefinement.min}
+            onChange={event =>
+              refine({
+                ...currentRefinement,
+                min: event.target.value,
+              })
+            }
+            className="number-filter"
+            placeholder="Min"
+          />
+      {/*<span className="mx-4">à</span>*/}
+      <input
+            type="number"
+            min={min}
+            max={max}
+            step={1 / Math.pow(10, precision)}
+            value={currentRefinement.max}
+            onChange={event =>
+              refine({
+                ...currentRefinement,
+                max: event.target.value,
+              })
+            }
+            className="number-filter"
+            placeholder="Max"
+          />
+    </form>
+  </div> 
+);
+
+const CustomRangeInput = connectRange(RangeInput);
+
+const InfiniteHits = ({ 
+  hits,
+  hasPrevious,
+  refinePrevious,
+  hasMore,
+  refineNext,
+}) => (
+  <div>
+    <div className="my-8 flex justify-center">
+      {hasPrevious && <button onClick={refinePrevious} className="inline-block text-center w-auto py-3 px-6 bg-secondaire text-white rounded-full cursor-pointer hover:shadow-lg transition duration-300 disabled:opacity-50">
+        Précédents
+      </button>}
+    </div>
+    <ul className="grid grid-cols-4 gap-4">
+      {
+        hits.map(hit => (
+          <li key={hit.objectID}>
+            <div className="group relative mb-4 pb-4" style={{borderRadius: "20px"}}>
+              <div className="w-full min-h-80 aspect-w-1 aspect-h-1 overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none cursor-pointer" style={{borderRadius: "20px", boxShadow: "-20px 20px 60px #d9d9d9"}}>
+                <Link href={`/product/${hit.link}`}>  
+                  <img src={`${hit.image}`} className="w-full h-full bg-white object-center object-cover lg:w-full lg:h-full"/>
+                </Link>
+              </div>
+              <div className="hit-content my-4 mx-4">
+                <div className="text-center font-semibold text-principal">
+                  <CustomHighlight attribute="name" hit={hit} className="text-center" />
+                </div>
+                <div className="text-secondaire text-center font-bold mb-2">
+                  {hit.price}
+                </div>
+                <div className="flex justify-center items-center">
+                  <button className="w-12 h-12 flex justify-center items-center bg-secondaire text-white text-center rounded-full cursor-pointer hover:shadow-lg transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <div className="my-8 flex justify-center">
+      {hasMore && <button onClick={refineNext} className="inline-block text-center w-auto py-3 px-6 bg-secondaire text-white rounded-full cursor-pointer hover:shadow-lg transition duration-300 disabled:opacity-50">
+        Suivants
+      </button>}
+    </div>
+  </div>
+);
+
+const CustomInfiniteHits = connectInfiniteHits(InfiniteHits);
+/*HitComponent.propTypes = {
+  hit: PropTypes.object,
+};*/
+
+const Stats = ({ processingTimeMS, nbHits, nbSortedHits, areHitsSorted }) => (
+  <p className="text-xs">
+    {areHitsSorted && nbHits !== nbSortedHits
+      ? `${nbSortedHits.toLocaleString()} résultats pertinents triés par ${nbHits.toLocaleString()} trouvé en ${processingTimeMS.toLocaleString()} ms`
+      : `${nbHits.toLocaleString()} résultats trouvés en ${processingTimeMS.toLocaleString()} ms`}
+  </p>
+);
+
+const CustomStats = connectStats(Stats);
+
+const Highlight = ({ highlight, attribute, hit }) => {
+  const parsedHit = highlight({
+    highlightProperty: '_highlightResult',
+    attribute,
+    hit,
+  });
+
+  return (
+    <span>
+      {parsedHit.map(
+        (part, index) =>
+          part.isHighlighted ? (
+            <span key={index} className="text-secondaire">{part.value}</span>
+          ) : (
+            <span key={index}>{part.value}</span>
+          )
+      )}
+    </span>
+  );
+};
+
+const CustomHighlight = connectHighlight(Highlight);
+
+class ProductList extends React.Component {
+  static propTypes = {
+    searchState: PropTypes.object,
+    resultsState: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    onSearchStateChange: PropTypes.func,
+    createURL: PropTypes.func,
+    indexName: PropTypes.string,
+    searchClient: PropTypes.object,
+  };
+
+  render() {
+    return (
+      <InstantSearch
+        searchClient={this.props.searchClient}
+        resultsState={this.props.resultsState}
+        onSearchStateChange={this.props.onSearchStateChange}
+        searchState={this.props.searchState}
+        createURL={this.props.createURL}
+        indexName={this.props.indexName}
+        onSearchParameters={this.props.onSearchParameters}
+        {...this.props}
+      >
+        <Configure hitsPerPage={16} />
+        <div className="container">
+          <div className="row">
+            <div className="col header-search">
+              <CustomSearchBox />
+            </div>
+          </div>
+          <div className='row'>
+            <main className="flex">
+                <section className="col-sm" style={{maxWidth: '260px', flexShrink: 0, padding: '32px 20px'}}>
+                  <div className="border-t border-solid py-8">
+                    <div className="font-weight-semibold sidebar-box-title">Categories</div>
+                    {/*<CustomRefinementList attribute="category" />*/}
+                    <CustomRefinementList attribute="category" />
+                  </div>
+                  <div className="border-t border-solid py-8">
+                    <div className="font-weight-semibold sidebar-box-title">Marque</div>
+                    <CustomRefinementList attribute="marque" 
+                      searchable 
+                      translations={{
+                        showMore(expanded) {
+                          return expanded ? 'Moins' : 'Plus';
+                        },
+                        noResults: 'Pas de résultats',
+                        submitTitle: 'Soumettez votre requête de recherche.',
+                        resetTitle: 'Effacez votre requête de recherche.',
+                        placeholder: 'Chercher ici...',
+                      }}
+                    />
+                  </div>
+                  <div className="border-t border-solid py-8">
+                      <div className="font-weight-semibold sidebar-box-title">Échelle des prix</div>
+                      <CustomRangeInput attribute="price" />
+                  </div>
+                  <div className='pt-4'>
+                    <CustomClearRefinements />
+                  </div>
+                </section>
+                <section className="results flex-shrink" style={{flex: 3}}>
+                  <header className="border-b border-solid flex justify-end mb-8 py-8 items-center" style={{minHeight: '80px'}}>
+                    <div>
+                      <CustomStats />
+                    </div>
+                  </header>
+                  <CustomInfiniteHits />
+                </section>
+            </main>
+          </div>
+        </div>
+      </InstantSearch>
+    );
+  }
+}
+
+export default ProductList;
+
+
+
+
+/*import Link from "next/link";
+
+import Product from "./Product";
+
+export default function ProductList({ products }) {
+  if (!products) return null;
+  console.log(products);
+  return (
+    <ul>
+      {products.map((product) => (
+        
+        <li key={product.permalink}>
+          <Link href={`/products/${product.permalink}`}>
+            <a>
+              <Product {...product} />
+            </a>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}*/
