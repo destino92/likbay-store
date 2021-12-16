@@ -209,12 +209,22 @@ label {
   overflow: hidden;
 
   img {
+    object-fit: cover;
     width: 100%;
+    height: 275px;
     transition: -webkit-transform 1s;
     transition: transform 1s;
     transition: transform 1s, -webkit-transform 1s;
     vertical-align: middle;
     border:none;
   }
+}
+
+.card_link {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 20px 0;
+  color: #23262F;
 }
 

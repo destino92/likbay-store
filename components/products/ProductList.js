@@ -199,14 +199,16 @@ const InfiniteHits = ({
                 <img src={`${hit.image}`} />
                 {/*</Link>*/}
               </div>
-              <div className="">
-                <div className="">
-                  <CustomHighlight attribute="name" hit={hit} className="text-center" />
+              <Link href={`/product/${hit.link}`} className="card_link">
+                <div>
+                  <div className="">
+                    <CustomHighlight attribute="name" hit={hit} className="text-center" />
+                  </div>
+                  <div className="">
+                    {hit.price}
+                  </div>
                 </div>
-                <div className="">
-                  {hit.price}
-                </div>
-              </div>
+              </Link>
             </div>
           ))
         }
