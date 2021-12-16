@@ -170,6 +170,10 @@ label {
   margin-top: 32px;
 }
 
+.catalog_row {
+  display: flex;
+}
+
 .catalog_wrapper {
   flex-grow: 1;
   padding-left: 32px;
@@ -263,3 +267,24 @@ label {
   text-transform: uppercase;
   color: $principal;
 }
+
+@media only screen and (max-width: 1023px) {
+  .catalog__row {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .catalog_list {
+    display: block;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 1279px) {
+  .catalog .card {
+    flex: 0 0 calc(50% - 32px);
+    max-width: calc(50% - 32px);
+}
+}
+

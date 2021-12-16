@@ -189,33 +189,35 @@ const InfiniteHits = ({
         Précédents
       </button>}
     </div>
-    <div className="catalog_wrapper">
-      <div className="catalog_list">
-        {
-          hits.map(hit => (
-            <div className="catalog_card" key={hit.objectID}>
-              <div className="card_preview">
-                {/*<Link href={`/product/${hit.link}`}> */} 
-                <img src={`${hit.image}`} />
-                {/*</Link>*/}
-              </div>
-              <Link href={`/product/${hit.link}`}>
-                <div className="card_link">
-                  <div className="card_body">
-                    <div className="card_line">
-                      <div className="card_title">
-                        <CustomHighlight attribute="name" hit={hit} />
-                      </div>
-                      <div className="card_price">
-                        {hit.price}
+    <div className='catalog_row'>
+      <div className="catalog_wrapper">
+        <div className="catalog_list">
+          {
+            hits.map(hit => (
+              <div className="catalog_card" key={hit.objectID}>
+                <div className="card_preview">
+                  {/*<Link href={`/product/${hit.link}`}> */} 
+                  <img src={`${hit.image}`} />
+                  {/*</Link>*/}
+                </div>
+                <Link href={`/product/${hit.link}`}>
+                  <div className="card_link">
+                    <div className="card_body">
+                      <div className="card_line">
+                        <div className="card_title">
+                          <CustomHighlight attribute="name" hit={hit} />
+                        </div>
+                        <div className="card_price">
+                          {hit.price}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))
-        }
+                </Link>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
     <div className="catalog_btns">
@@ -324,8 +326,8 @@ class ProductList extends React.Component {
                     <CustomClearRefinements />
                   </div>
                 </div>
-                <div className="col-md-8">
-                  <header className="border-b border-solid flex justify-end mb-8 py-8 items-center" style={{minHeight: '80px'}}>
+                <div className="col-sm col-md-8">
+                  <header className="border-b border-solid flex justify-end mb-8 py-8 items-center">
                     <div>
                       <CustomStats />
                     </div>
