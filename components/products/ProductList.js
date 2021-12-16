@@ -184,43 +184,36 @@ const InfiniteHits = ({
   refineNext,
 }) => (
   <div>
-    <div className="my-8 flex justify-center">
-      {hasPrevious && <button onClick={refinePrevious} className="inline-block text-center w-auto py-3 px-6 bg-secondaire text-white rounded-full cursor-pointer hover:shadow-lg transition duration-300 disabled:opacity-50">
+    <div className="catalog_btns">
+      {hasPrevious && <button onClick={refinePrevious} className="h-56 px-3 btn-skip">
         Précédents
       </button>}
     </div>
-    <ul className="grid grid-cols-4 gap-4">
-      {
-        hits.map(hit => (
-          <li key={hit.objectID}>
-            <div className="group relative mb-4 pb-4" style={{borderRadius: "20px"}}>
-              <div className="w-full min-h-80 aspect-w-1 aspect-h-1 overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none cursor-pointer" style={{borderRadius: "20px", boxShadow: "-20px 20px 60px #d9d9d9"}}>
-                <Link href={`/product/${hit.link}`}>  
-                  <img src={`${hit.image}`} className="w-full h-full bg-white object-center object-cover lg:w-full lg:h-full"/>
-                </Link>
+    <div className="catalog_wrapper">
+      <div className="catalog_list">
+        {
+          hits.map(hit => (
+            <div className="catalog_card" key={hit.objectID}>
+              <div className="card_preview">
+                {/*<Link href={`/product/${hit.link}`}> */} 
+                <img src={`${hit.image}`} />
+                {/*</Link>*/}
               </div>
-              <div className="hit-content my-4 mx-4">
-                <div className="text-center font-semibold text-principal">
+              <div className="">
+                <div className="">
                   <CustomHighlight attribute="name" hit={hit} className="text-center" />
                 </div>
-                <div className="text-secondaire text-center font-bold mb-2">
+                <div className="">
                   {hit.price}
-                </div>
-                <div className="flex justify-center items-center">
-                  <button className="w-12 h-12 flex justify-center items-center bg-secondaire text-white text-center rounded-full cursor-pointer hover:shadow-lg transition duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
-                    </svg>
-                  </button>
                 </div>
               </div>
             </div>
-          </li>
-        ))
-      }
-    </ul>
-    <div className="my-8 flex justify-center">
-      {hasMore && <button onClick={refineNext} className="inline-block text-center w-auto py-3 px-6 bg-secondaire text-white rounded-full cursor-pointer hover:shadow-lg transition duration-300 disabled:opacity-50">
+          ))
+        }
+      </div>
+    </div>
+    <div className="catalog_btns">
+      {hasMore && <button onClick={refineNext} className="h-56 px-3 btn-valid">
         Suivants
       </button>}
     </div>
@@ -287,7 +280,7 @@ class ProductList extends React.Component {
         onSearchParameters={this.props.onSearchParameters}
         {...this.props}
       >
-        <Configure hitsPerPage={16} />
+        <Configure hitsPerPage={6} />
         <div className="container">
           <div className="row">
             <div className="col header-search">
@@ -295,8 +288,8 @@ class ProductList extends React.Component {
             </div>
           </div>
           <div className='row'>
-            <main className="flex">
-                <section className="col-sm" style={{maxWidth: '260px', flexShrink: 0, padding: '32px 20px'}}>
+            {/*<main>*/}
+                <div className="col-sm" style={{maxWidth: '260px', flexShrink: 0, padding: '32px 20px'}}>
                   <div className="border-t border-solid py-8">
                     <div className="font-weight-semibold sidebar-box-title">Categories</div>
                     {/*<CustomRefinementList attribute="category" />*/}
@@ -324,16 +317,16 @@ class ProductList extends React.Component {
                   <div className='pt-4'>
                     <CustomClearRefinements />
                   </div>
-                </section>
-                <section className="results flex-shrink" style={{flex: 3}}>
+                </div>
+                <div className="col-md-8">
                   <header className="border-b border-solid flex justify-end mb-8 py-8 items-center" style={{minHeight: '80px'}}>
                     <div>
                       <CustomStats />
                     </div>
                   </header>
                   <CustomInfiniteHits />
-                </section>
-            </main>
+                </div>
+            {/*</main>*/}
           </div>
         </div>
       </InstantSearch>

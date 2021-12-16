@@ -169,3 +169,52 @@ label {
 .sidebar-box-items .small-space {
   margin-top: 32px;
 }
+
+.catalog_wrapper {
+  flex-grow: 1;
+  padding-left: 32px;
+}
+
+.catalog_btns {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.catalog_list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -32px -16px 0;
+}
+
+.catalog_card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc(33.333% - 32px);
+  max-width: calc(33.333% - 32px);
+  margin: 32px 16px 0;
+  padding: 12px;
+  box-shadow: 0px 32px 32px rgb(31 47 70 / 12%);
+  border-radius: 20px;
+}
+
+.catalog_card:hover .card_preview > img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.card_preview {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    transition: -webkit-transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
+    vertical-align: middle;
+    border:none;
+  }
+}
+
