@@ -89,9 +89,9 @@ class Cart extends Component {
             >
               {/* Cart Header */}
               <div className="px-4 px-md-5">
-                <div className="pt-4 pb-3 borderbottom border-color-principal font-color-principal d-flex justify-content-between align-items-center">
+                <div className="pt-4 pb-3 font-color-principal d-flex justify-content-between align-items-center">
                   <p className="font-size-subheader font-weight-semibold">
-                    Panier
+                    Panier ({cart.line_items.length} produit{cart.line_items.length > 1?'s':''})
                   </p>
                   <button
                     className="bg-transparent p-0"
