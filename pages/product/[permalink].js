@@ -13,8 +13,9 @@ import SuggestedProducts from '../../components/productAssets/SuggestedProducts'
 import ExploreBanner from '../../components/productAssets/ExploreBanner';
 import Footer from '../../components/common/Footer';
 import SocialMedia from '../../components/common/SocialMedia';
-import CategoryList from '../../components/products/CategoryList';
+//import CategoryList from '../../components/products/CategoryList';
 import reduceProductImages from '../../lib/reduceProductImages';
+import ImageGallery from 'react-image-gallery';
 
 const detailView = `<p>
   Slightly textured fabric with tonal geometric design and a bit of shine
@@ -56,7 +57,7 @@ export default function Product() {
   }, [permalink]);
 
   if (loading) {
-    return <TemplatePage page={ {message: 'Loading...'} } />
+    return <TemplatePage page={ {message: 'Veuillez patienter...'} } />
   }
 
   if (product === null) {
@@ -64,6 +65,13 @@ export default function Product() {
   }
 
   const images = reduceProductImages(product);
+
+  const imagesFull = images.map(img => ({
+      original: img,
+      thumbnail: img
+    })
+  );
+
   return (
     <Root>
       <Head>
@@ -73,6 +81,7 @@ export default function Product() {
       <div className="py-5 my-5">
       <div className="main-product-content">
         {/* Sidebar */}
+        {/*
         <div className="product-sidebar">
           <CategoryList
             className="product-left-aside__category-list"
@@ -80,10 +89,12 @@ export default function Product() {
           />
           <CarouselImages images={images} />
         </div>
+        */}
 
         <div className="product-images">
-          <div className="flex-grow-1">
-            {Array.isArray(images) ? (images.map((image, i) => (
+          <div className="product-img">
+            <ImageGallery items={imagesFull} showNav={false} showFullscreenButton={false} showPlayButton={false} />
+            {/*Array.isArray(images) ? (images.map((image, i) => (
               <img
                 key={i}
                 src={image}
@@ -91,7 +102,7 @@ export default function Product() {
               />
             ))) : (
               ''
-            )}
+            )*/}
           </div>
         </div>
 

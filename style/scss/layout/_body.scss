@@ -18,10 +18,10 @@ body {
     "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-::selection {
+/*::selection {
   background: $black;
   color: $white;
-}
+}*/
 
 :focus {
   outline: 3px auto $gray-500;

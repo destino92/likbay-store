@@ -99,7 +99,11 @@ class Header extends Component {
 
   renderLoginLogout() {
     const { customer } = this.props;
+    const { user } = this.props;
     const { loggedIn } = this.state;
+
+    console.log(user);
+    console.log(customer);
 
     if (loggedIn) {
       return (
@@ -178,7 +182,7 @@ class Header extends Component {
             </Link>
           </div>
           <div className="d-flex">
-            {/* process.browser && this.renderLoginLogout() */}
+            {process.browser && this.renderLoginLogout()}
             <div
               className="position-relative cursor-pointer"
               onClick={this.toggleCart}

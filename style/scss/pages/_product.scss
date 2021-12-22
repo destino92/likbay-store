@@ -1,8 +1,10 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
 .main-product-content {
   max-width: 1440px;
   display: flex;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2rem;//padding: 0 80px;
 
   @include md-max {
     display: block;
@@ -15,7 +17,7 @@
   .product-sidebar {
     display: flex;
     top: 6.5rem;
-    min-width: 16rem;
+    //min-width: 16rem;
     position: sticky;
     align-self: flex-start;
     justify-content: space-between;
@@ -27,13 +29,30 @@
 
   .product-images {
     display: flex;
-    //margin: 0 4rem;
+    margin: 0 4rem;
+    width: 640px;
+  }
+
+  .product-img {
+    position: relative;
+    flex-grow: 1;
+    align-self: flex-start;
+    margin-right: 96px;
+    
+    img {
+      width: 100%;
+      border-radius: 16px;
+    }
   }
 
   .product-detail {
-    position: sticky;
+    //position: sticky;
     top: 6.5rem;
-    min-width: 24rem;
+    //min-width: 24rem;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 384px;
     align-self: flex-start;
 
     @include md-max {
@@ -46,4 +65,48 @@
       align-self: flex-start;
     }
   }
+}
+
+@media only screen and (max-width: 1179px){ 
+  .main-product-content .product-detail {
+    width: 336px;
+  }
+}
+
+@media only screen and (max-width: 1023px){
+  .main-product-content .product-images {
+    margin: 0 0 32px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1023px){
+  .product-images .product-img {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1023px){ 
+  .main-product-content .product-detail {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1179px){
+  .main-product-content .product-images {
+    margin-right: 32px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1339px){
+  .main-product-content .product-images {
+    margin-right: 64px;
+    width: 100%;
+  }
+}
+
+.image-gallery-thumbnail-image {
+  border-radius: 0px !important;
 }

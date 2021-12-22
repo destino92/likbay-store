@@ -234,8 +234,9 @@ label {
 
 .card_body {
   display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  cursor: pointer;
 }
 
 .card_line {
@@ -269,6 +270,12 @@ label {
 }
 
 @media only screen and (max-width: 1023px) {
+  .catalog_wrapper {
+    padding-left: 0;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
   .catalog_row {
     display: block;
   }
@@ -287,4 +294,19 @@ label {
     max-width: calc(50% - 32px);
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .catalog_card {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .catalog_card:not(:last-child) {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
 

@@ -1,3 +1,20 @@
-.login-container {
-  min-height: calc(100vh - 430px);
+.ftco-section {
+    padding: 7em 0;
+}
+
+.login-form .form-control {
+  background-color: #ebecee;
+  border-radius: 12px;
+  border: none !important;
+  height: 40px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #3e485c;
+  font-size: 14px;
+  border: none;
+  outline: none;
+
+  &:hover {
+      border: 2px solid $principal !important;
+  }
 }

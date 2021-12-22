@@ -18,11 +18,13 @@ import {
   ABORT_CHECKOUT,
   SET_CUSTOMER,
   CLEAR_CUSTOMER,
+  SET_USER
 } from './actions/actionTypes';
 
 let store
 // Declare initial state
 const initialState = {
+  user: {},
   categories: [],
   products: [],
   cart: {},
@@ -51,6 +53,9 @@ const reducer = (state = initialState, action) => {
         categories,
         products,
       };
+    // Dispatch in App SSR
+    case SET_USER:
+      return { ...state, user: action.payload };
     // Dispatch in App SSR
     // Check if action dispatched is STORE_CATEGORIES and act on that
     case STORE_CATEGORIES:

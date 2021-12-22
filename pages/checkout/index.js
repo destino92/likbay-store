@@ -47,14 +47,14 @@ class CheckoutPage extends Component {
       'shipping[town_city]': '',
       'shipping[region]': '',
       'shipping[postal_zip_code]': '',
-      'shipping[country]': '',
+      'shipping[country]': 'CG',
       'billing[name]': '',
       'billing[street]': '',
       'billing[street_2]': '',
       'billing[town_city]': '',
       'billing[region]': '',
       'billing[postal_zip_code]': '',
-      'billing[country]': '',
+      'billing[country]': 'CG',
       receiveNewsletter: true,
       orderNotes: '',
       countries: {},
@@ -227,6 +227,7 @@ class CheckoutPage extends Component {
 
   handleDiscountChange(e) {
     e.preventDefault();
+    console.log(e.target.value);
     if (!this.state.discountCode.trim() || !this.props.checkout) {
       return;
     }
@@ -246,6 +247,7 @@ class CheckoutPage extends Component {
   }
 
   handleChangeForm(e) {
+    console.log(e.target.value)
     // when input cardNumber changes format using ccFormat helper
     if (e.target.name === 'cardNumber') {
       e.target.value = ccFormat(e.target.value)
@@ -373,7 +375,7 @@ class CheckoutPage extends Component {
       },
       // collected 'order notes' data for extra field configured in the Chec Dashboard
       extrafields: {
-        extr_j0YnEoqOPle7P6: this.state.orderNotes,
+        extr_kd6Ll2Ay15V2mj: this.state.orderNotes,
       },
       // Add more to the billing object if you're collecting a billing address in the
       // checkout form. This is just sending the name as a minimum.
@@ -549,24 +551,24 @@ class CheckoutPage extends Component {
           <div className='row'>
             <div className="col-12 col-md-10 col-lg-6 offset-md-1 offset-lg-0">
               <div className="d-flex pb-4 breadcrumb-container">
-                <Link href="/collection">
-                  <a className="font-color-principal font-size-caption text-decoration-underline cursor-pointer">
-                    Panier
-                  </a>
-                </Link>
-                <img src="/icon/arrow-right.svg" className="w-16 mx-1" alt="Arrow icon"/>
+                {/*<Link href="/collection">
+                    <a className="font-color-principal font-size-caption text-decoration-underline cursor-pointer">
+                      Panier
+                    </a>
+                  </Link>
+                  <img src="/icon/arrow-right.svg" className="w-16 mx-1" alt="Arrow icon"/>*/}
                 <div className="font-size-caption font-weight-bold font-color-principal cursor-pointer">
                   Commande
                 </div>
               </div>
             </div>
           </div>
-          <div className="row mt-4">
+          <div className="row">
             <div className="col-12 col-md-10 col-lg-6 offset-md-1 offset-lg-0">
               {
                 checkout
                 && (
-                  <form onChange={this.handleChangeForm} onSubmit={this.captureOrder} className='checkout-form'>
+                  <form onChange={this.handleChangeForm} onSubmit={this.captureOrder} id='checkout-form' className='checkout-form'>
                     <p className="font-size-subheader font-color-secondaire font-weight-semibold mb-4">
                       Client
                     </p>
@@ -592,7 +594,7 @@ class CheckoutPage extends Component {
                       <div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
                           <p className="mb-1 font-size-caption font-color-light">
-                            Telephone
+                            Telephone*
                           </p>
                           <input
                             required
@@ -606,7 +608,7 @@ class CheckoutPage extends Component {
                       <div className="col-12 col-sm-6 mb-3">
                         <label className="w-100">
                           <p className="mb-1 font-size-caption font-color-light">
-                            Email address*
+                            Email address
                           </p>
                           <input
                             required
@@ -720,23 +722,12 @@ class CheckoutPage extends Component {
                         />
                       )}
                     </>}
-
-                    <p className="checkout-error">
-                      { !selectedShippingOption ? 'Selectionner une option de livraison!' : '' }
-                    </p>
-                    <button
-                      type="submit"
-                      className="font-color-white w-100 border-none h-56 font-weight-semibold d-lg-block btn-valid"
-                      disabled={!selectedShippingOption}
-                    >
-                      Commander
-                    </button>
                   </form>
                 )
               }
             </div>
 
-            <div className="col-12 col-lg-5 col-md-10 offset-md-1 mt-4 mt-lg-0 order-first order-sm-last">
+            <div className="col-12 col-lg-5 col-md-10 offset-md-1 mt-4 mt-lg-0">
               <div className="bg-brand200 p-lg-5 p-3 checkout-summary">
                 <div className="borderbottom font-size-subheader border-color-principal font-color-principal pb-2 font-weight-semibold">
                   Votre commande
@@ -777,7 +768,7 @@ class CheckoutPage extends Component {
                   <input
                     name="discountCode"
                     onChange={this.handleChangeForm}
-                    value=""
+                    value={this.state.discountCode}
                     placeholder="Carte cadeau ou code de réduction"
                     className="mr-2 col coupon"
                   />
@@ -824,6 +815,17 @@ class CheckoutPage extends Component {
                     { checkout.live ? checkout.live.total.formatted_with_symbol : '' }
                   </p>
                 </div>
+                <p className="checkout-error">
+                  { !selectedShippingOption ? 'Selectionner une option de livraison!' : '' }
+                </p>
+                <button
+                  type="submit"
+                  form="checkout-form"
+                  className="font-color-white w-100 border-none h-56 font-weight-semibold d-lg-block btn-valid"
+                  disabled={!selectedShippingOption}
+                >
+                  Commander
+                </button>
               </div>
             </div>
           </div>

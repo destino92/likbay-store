@@ -25,3 +25,7 @@ export const ABORT_CHECKOUT = 'ABORT_CHECKOUT';
 // Define customer/authentication action types
 export const SET_CUSTOMER = 'SET_CUSTOMER';
 export const CLEAR_CUSTOMER = 'CLEAR_CUSTOMER';
+
+// Define user/auth action types
+export const SET_USER = 'SET_USER';
+export const CLEAR_USER = 'CLEAR_USER';

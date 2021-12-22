@@ -89,8 +89,9 @@ class CarouselImages extends Component {
               onClick={this.onClickImage.bind(this, index)}
               style={{
                 background: `url("${image}") center center/cover`,
+                borderRadius: '10px',
                 border:
-                  index === 0 ? '2px solid #000000' : '2px solid #FFFFFF'
+                  index === 0 ? '2px solid #006dcb' : '2px solid #ff8001'
               }}
             />
           )))}

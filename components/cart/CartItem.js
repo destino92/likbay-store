@@ -34,7 +34,7 @@ class CartItem extends Component {
             className="cart-item--image mr-4"
             style={{ backgroundImage: `url("${item.media.source}")` }}
           />}
-          <div className="flex-grow-1 borderbottom border-color-gray400 h-100">
+          <div className="flex-grow-1 h-100">
             <div className="d-flex justify-content-between mb-2">
               <p className="font-weight-semibold font-color-principal">{item.name}</p>
               <p className="text-right font-weight-medium font-color-secondaire font-size-subheader">
@@ -58,9 +58,9 @@ class CartItem extends Component {
                   <img src="/icon/plus.svg" className="w-16" title="Plus icon" alt=""/>
                 </button>
               </div>
-              <p className="text-right text-decoration-underline font-color-medium cursor-pointer" onClick={() => this.handleRemoveFromCart(item.id)}>
+              {/*<p className="text-right text-decoration-underline font-color-medium cursor-pointer" onClick={() => this.handleRemoveFromCart(item.id)}>
                 Retirer
-              </p>
+              </p>*/}
             </div>
           </div>
         </div>
