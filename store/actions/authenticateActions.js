@@ -1,5 +1,4 @@
 import commerce from '../../lib/commerce';
-import axios from 'axios';
 import { CLEAR_CUSTOMER, SET_CUSTOMER, SET_USER, CLEAR_USER } from './actionTypes';
 
 const fetchUser = (url) =>
@@ -17,7 +16,8 @@ const fetchUser = (url) =>
  */
 export const setUser = () => (dispatch) => {
   return fetchUser('/api/user').then((user) => {
-    dispatch({ type: SET_CUSTOMER, payload: user });
+    console.log(user);
+    dispatch({ type: SET_USER, payload: user });
   }).catch((error) => {
     // Most likely a 404, meaning the customer doesn't exist. It should be logged out
     console.log(error)

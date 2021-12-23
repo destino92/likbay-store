@@ -6,6 +6,7 @@
   background: linear-gradient(148deg, rgba(0,87,162,1) 0%, rgba(0,109,203,1) 49%, rgba(51,138,213,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0057a2",endColorstr="#338ad5",GradientType=1);
   color: white;
+  z-index: 10000;
 
   @include small-xs {
     padding: 1.25rem 1.5rem 1.25rem 1rem;
@@ -51,3 +52,75 @@
 .mobile-menu-inner {
   padding: 7rem 1.5rem;
 }
+
+.floaty-bar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(0,87,162);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  display: none;
+}
+
+.action-list {
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 18px;
+  position: relative;
+}
+
+.floaty-bar .bar-actions {
+  align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.floaty-bar .action-list {
+  height: 60px;
+}
+
+.action-list .action-list-item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .floaty-bar .action-list {
+    padding: 0;
+  }
+}
+
+
+@media screen and (max-width: 680px) {
+  .nav-header-menu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .floaty-bar {
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .floaty-bar .action-list .action-list-item {
+    padding: 0 20px;
+  }
+}
+
+
+
+  

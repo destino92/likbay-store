@@ -32,7 +32,7 @@ export default async function login(req, res) {
     let newUser = await isNewUser(metadata.issuer, token);
 
     // If not, create a new user in Hasura
-    newUser && (await createNewUser(metadata, token, tel));
+    newUser && (await createNewUser(metadata.issuer, tel, token));
 
     setTokenCookie(res, token);
     res.status(200).send({ done: true });
@@ -45,27 +45,27 @@ export default async function login(req, res) {
 async function isNewUser(issuer, token) {
   let query = {
     query: `{
-      users( where: {issuer: {_eq: "${issuer}"}}) {
+      user( where: {issuer: {_eq: "${issuer}"}}) {
         tel
       }
     }`,
   };
   try {
     let data = await queryHasura(query, token);
-    return data?.users.length ? false : true;
+    return data?.user.length ? false : true;
   } catch (error) {
     console.log(error);
   }
 }
 
 async function createNewUser(
-  { issuer, publicAddress, email },
-  token,
-  tel
+  issuer,
+  tel,
+  token
 ) {
   let query = {
     query: `mutation {
-      insert_users_one(object: 
+      insert_user_one(object: 
         { 
           tel: "${tel}", 
           issuer: "${issuer}"
@@ -86,7 +86,7 @@ async function createNewUser(
 
 async function queryHasura(query, token) {
   try {
-    let res = await fetch(process.env.NEXT_PUBLIC_HASURA_GRAPHQL_URL + "v1/graphql", {
+    let res = await fetch(process.env.NEXT_PUBLIC_HASURA_GRAPHQL_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

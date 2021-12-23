@@ -7,14 +7,14 @@ export default async function user(req, res) {
 
     let token = req.cookies.token;
     let user = jwt.verify(token, process.env.JWT_SECRET);
-    let { issuer, tel } = user;
+    let { issuer, phoneNumber } = user;
 
     // Refresh the JWT for the user each time they send a request
     // to /user so they only get logged out after SESSION_LENGTH_IN_DAYS of inactivity
     let newToken = jwt.sign(
       {
         issuer,
-        tel,
+        phoneNumber,
         exp:
           Math.floor(Date.now() / 1000) +
           60 * 60 * 24 * process.env.SESSION_LENGTH_IN_DAYS,

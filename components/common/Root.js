@@ -5,7 +5,9 @@ export default function Root({ transparentHeader, children }) {
   return (
     <>
       <Header transparent={transparentHeader} />
-      {children}
+      <div style={{marginTop: "120px"}}>
+        {children}
+      </div>
     </>
   );
 }

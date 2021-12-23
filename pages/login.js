@@ -9,6 +9,7 @@ import Footer from '../components/common/Footer';
 
 const Login = () => {
   let user = useUser();
+  console.log(user);
 
   useEffect(() => {
     if (user) user.issuer && Router.push("/account");

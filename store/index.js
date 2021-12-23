@@ -24,7 +24,7 @@ import {
 let store
 // Declare initial state
 const initialState = {
-  user: {},
+  user: null,
   categories: [],
   products: [],
   cart: {},

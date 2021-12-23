@@ -28,12 +28,12 @@ class MyDocument extends Document {
           <meta name="title" content="Site de commerce en ligne" key="title" />
           <meta name="description" content="Likbay est une solution de vente et d'achats en ligne" />
           <meta property="og:title" content="Likbay" />
-          <meta property="og:image" content="https://cdn.chec.io/email/assets/marketing/demo-preview.png" />
+          <meta property="og:image" content="" />
           <meta property="og:description" content="Likbay est une solution de vente et d'achats en ligne, veuillez visiter" />
           <meta property="og:url" content="likbay.co" />
           <meta property="twitter:title" content="Likbay | Demo storefront" />
           <meta name="twitter:creator" content="@likaby" />
-          <meta property="twitter:image" content="https://cdn.chec.io/email/assets/marketing/demo-preview.png" />
+          <meta property="twitter:image" content="" />
           <meta property="twitter:description" content="Likbay est une solution de vente et d'achats en ligne, veuillez visiter" />
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
