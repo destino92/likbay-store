@@ -37,7 +37,7 @@ class Confirm extends Component {
         className="d-flex align-items-center text-decoration-underline cursor-pointer mt-3 mt-sm-0 no-print bg-transparent"
       >
         <img src="/icon/print.svg" className="mr-2 w-20 no-print" alt=""/>
-        <div className="no-print">Imprimé le reçu de commande</div>
+        <div className="no-print">Imprimer le bon de commande</div>
       </button>
     );
   }
@@ -68,7 +68,7 @@ class Confirm extends Component {
         <div className="d-flex justify-content-between align-items-center mb-2">
           <p>Expédition</p>
           <p className="text-right font-weight-medium">
-            ${orderReceipt.order.shipping.price.formatted_with_code}
+            {orderReceipt.order.shipping.price.formatted_with_code}
           </p>
         </div>
       </div>
@@ -111,19 +111,19 @@ class Confirm extends Component {
                   Merci pour votre achat!
                 </h3>
                 <h4 className="text-center font-size-subheader mb-3">
-                  Votre commande s&#39;est terminée avec succès
+                  Votre commande a été initié avec succès, vous serez contacté par nos livreurs
                 </h4>
                 <p className="text-center font-color-light mb-5">
                   Voici votre numéro de commande pour référence : {orderReceipt.customer_reference}
                 </p>
                 <div className="d-flex w-100 justify-content-center flex-column flex-sm-row">
                   <Link href="/">
-                    <a className="checkout-confirm-buttons px-3 py-3 text-center flex-grow-1 border bg-white border-color-gray500 font-color-light mb-2 mb-sm-0 mr-sm-2 no-print">
-                      Rentrer à la maison
+                    <a className="checkout-confirm-buttons px-3 py-3 text-center flex-grow-1 btn-skip mb-2 mb-sm-0 mr-sm-2 no-print">
+                      Acceuil
                     </a>
                   </Link>
                   <Link href="/collection">
-                    <a className="checkout-confirm-buttons px-3 py-3 text-center flex-grow-1 bg-black font-color-white no-print">
+                    <a className="checkout-confirm-buttons px-3 py-3 text-center flex-grow-1 btn-valid no-print">
                       Continuer vos achats
                     </a>
                   </Link>
