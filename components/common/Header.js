@@ -145,7 +145,7 @@ class Header extends Component {
           <Cart isOpen={showCart} toggle={value => this.toggleCart(value)} />
           <div
             ref={this.header}
-            className={`d-flex top-0 w-100 header align-items-center justify-content-between position-fixed`}
+            className="d-flex top-0 w-100 header align-items-center justify-content-between position-fixed"
           >
             <div className='d-flex align-items-center justify-content-between'>
               <div className="logo-container">

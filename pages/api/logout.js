@@ -4,8 +4,10 @@ import jwt from 'jsonwebtoken';
 
 export default async function logout(req, res) {
   try {
-    if (!req.cookies.token)
+    if (!req.cookies.token) {
       return res.status(401).json({ message: 'User is not logged in' });
+    }
+      
     let token = req.cookies.token;
     let user = jwt.verify(token, process.env.JWT_SECRET);
     removeTokenCookie(res);

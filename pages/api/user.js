@@ -3,7 +3,9 @@ import { setTokenCookie } from '../../lib/cookies';
 
 export default async function user(req, res) {
   try {
-    if (!req.cookies.token) return res.json({ user: null });
+    if (!req.cookies.token) {
+      return res.json({ user: null });
+    } 
 
     let token = req.cookies.token;
     let user = jwt.verify(token, process.env.JWT_SECRET);

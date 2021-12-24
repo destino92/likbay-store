@@ -12,7 +12,7 @@ const Login = () => {
   console.log(user);
 
   useEffect(() => {
-    if (user) user.issuer && Router.push('/account');
+    if (user) { user.issuer && Router.push('/account'); }
   }, [user]);
 
   const [disabled, setDisabled] = useState(false);
