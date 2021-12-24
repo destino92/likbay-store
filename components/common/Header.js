@@ -167,10 +167,10 @@ class Header extends Component {
               </div>
               <div className="nav-header-menu">
                 <Link href="/collection">
-                  <a className="font-color-white mx-4">Produits</a>
+                  <a className="font-color-white mx-4">Boutique</a>
                 </Link>
                 <Link href="/products">
-                  <a className="font-color-white">Products</a>
+                  <a className="font-color-white">Produits</a>
                 </Link>
                 {/*<Link href="/about">
                   <a className="font-color-black">A propos</a>
