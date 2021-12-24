@@ -11,7 +11,7 @@ export default function HomeBanner() {
         Likbay est votre nouveau partenaire de shopping avec livraison à domicile.
       </p>
       <div className="d-flex align-items-center justify-content-center mt-3 mb-5">
-        <Link href="/about">
+        <Link href="#">
           <a className="d-flex py-3 px-3 align-items-center btn-skip">
             <p >En savoir plus</p>
           </a>

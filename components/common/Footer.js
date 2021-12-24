@@ -29,7 +29,7 @@ const Footer = () => (
             </div>
             <div>
               <a
-                href="https://commercejs.com/about"
+                href="#"
                 className="mb-3 d-block font-color-medium"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -37,7 +37,7 @@ const Footer = () => (
                 A propos
               </a>
               <a
-                href="http://slack.commercejs.com/"
+                href="#"
                 className="d-block font-color-medium"
                 target="_blank"
                 rel="noopener noreferrer"

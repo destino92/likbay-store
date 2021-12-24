@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import { setTokenCookie } from "../../lib/cookies";
+import jwt from 'jsonwebtoken';
+import { setTokenCookie } from '../../lib/cookies';
 
 export default async function user(req, res) {
   try {
@@ -18,10 +18,10 @@ export default async function user(req, res) {
         exp:
           Math.floor(Date.now() / 1000) +
           60 * 60 * 24 * process.env.SESSION_LENGTH_IN_DAYS,
-        "https://hasura.io/jwt/claims": {
-          "x-hasura-allowed-roles": ["user"],
-          "x-hasura-default-role": "user",
-          "x-hasura-user-id": `${issuer}`,
+        'https://hasura.io/jwt/claims': {
+          'x-hasura-allowed-roles': ['user'],
+          'x-hasura-default-role': 'user',
+          'x-hasura-user-id': `${issuer}`,
         },
       },
       process.env.JWT_SECRET

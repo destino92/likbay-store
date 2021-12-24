@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import algoliasearch from "algoliasearch"
+import algoliasearch from 'algoliasearch'
 
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID, 
@@ -30,17 +30,17 @@ export default async(req, res) => {
     neuf: payload.attributes[6].value
   }
   
-  const [resource, trigger] = event.split(".");
+  const [resource, trigger] = event.split('.');
 
   const index = client.initIndex(resource);
 
-  if(trigger === "delete") {
+  if(trigger === 'delete') {
     await index.deleteObject(objectID);
     return res.status(204).end()
   }
 
-  if(["create", "update"].includes(trigger)) {
-    return res.status(trigger === "create" ? 201 : 202).json(
+  if(['create', 'update'].includes(trigger)) {
+    return res.status(trigger === 'create' ? 201 : 202).json(
       await index.saveObject(product)
     );
   }

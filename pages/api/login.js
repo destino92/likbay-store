@@ -1,6 +1,6 @@
-import { magic } from "../../lib/magicAdmin";
-import jwt from "jsonwebtoken";
-import { setTokenCookie } from "../../lib/cookies";
+import { magic } from '../../lib/magicAdmin';
+import jwt from 'jsonwebtoken';
+import { setTokenCookie } from '../../lib/cookies';
 
 export default async function login(req, res) {
   try {
@@ -16,10 +16,10 @@ export default async function login(req, res) {
     let token = jwt.sign(
       {
         ...metadata,
-        "https://hasura.io/jwt/claims": {
-          "x-hasura-allowed-roles": ["user"],
-          "x-hasura-default-role": "user",
-          "x-hasura-user-id": `${metadata.issuer}`,
+        'https://hasura.io/jwt/claims': {
+          'x-hasura-allowed-roles': ['user'],
+          'x-hasura-default-role': 'user',
+          'x-hasura-user-id': `${metadata.issuer}`,
         },
         exp:
           Math.floor(Date.now() / 1000) +
@@ -87,11 +87,11 @@ async function createNewUser(
 async function queryHasura(query, token) {
   try {
     let res = await fetch(process.env.NEXT_PUBLIC_HASURA_GRAPHQL_URL, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + token,
       },
       body: JSON.stringify(query),
     });

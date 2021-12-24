@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const LoginForm = ({ onTelSubmit, disabled }) => {
-  const [tel, setTel] = useState("");
+  const [tel, setTel] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
