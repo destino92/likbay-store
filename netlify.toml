@@ -2,6 +2,13 @@
   command = "yarn deploy"
   publish = "out"
 
+[[redirects]]
+  from = "/product/*"
+  to = "/product/[permalink].html"
+  status = 200
+  force = true
+
+
 [[plugins]]
   package = "netlify-plugin-onboarding"
 
