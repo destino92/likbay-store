@@ -36,7 +36,6 @@ class MyDocument extends Document {
           <meta property="twitter:image" content="" />
           <meta property="twitter:description" content="Likbay est une solution de vente et d'achats en ligne, veuillez visiter" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="viewport" content= "width=device-width, user-scalable=no" />
         </Head>
         <body>
           <Main />

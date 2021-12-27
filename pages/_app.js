@@ -6,6 +6,7 @@ import { Provider  } from 'react-redux';
 import commerce from '../lib/commerce';
 import { loadStripe } from '@stripe/stripe-js';
 import { setCustomer } from '../store/actions/authenticateActions';
+import Head from 'next/head'
 import 'swiper/components/effect-fade/effect-fade.scss';
 
 const MyApp = ({Component, pageProps}) => {
@@ -44,6 +45,9 @@ const MyApp = ({Component, pageProps}) => {
 
   return (
     <Provider store={store}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+      </Head>
       <Component
         {...pageProps}
         stripe={stripePromise}
