@@ -50,10 +50,15 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 14px;
     border: none;
     outline: none;
+    margin-bottom: 9px;
 
     &:hover {
         border: 2px solid $principal !important;
     }
+}
+
+.checkout-form .is-invalid-input {
+    border: 2px solid $danger-800 !important;
 }
 
 .coupon {

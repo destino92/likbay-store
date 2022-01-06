@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import ccFormat from '../../utils/ccFormat';
 import commerce from '../../lib/commerce';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import Checkbox from '../../components/common/atoms/Checkbox';
 import Dropdown from '../../components/common/atoms/Dropdown';
 import Radiobox from '../../components/common/atoms/Radiobox';
@@ -23,6 +25,17 @@ import { withRouter } from 'next/router';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
 
 const billingOptions = ['Same as shipping Address', 'Use a different billing address'];
+
+const checkoutSchema = Yup.object().shape({
+  "first_name": Yup.string().required("Le champ Prénom ne peut pas etre vide"),
+  "last_name": Yup.string().required("Le champ Nom ne peut pas etre vide"),
+  "phone": Yup.string().required("Le champ Téléphone ne peut pas etre vide"),
+  'name': Yup.string().required("Le champ Nom complet ne peut pas etre vide"),
+  'street': Yup.string().required("Le champ Adresse ne peut pas etre vide"),
+  'town_city': Yup.string().required("Le champ Ville ne peut pas etre vide"),
+  'region': Yup.string().required("Le champ Région ne peut pas etre vide"),
+  'shipping_method': Yup.string().required("Le champ mode de livraison ne peut pas etre vide"),
+});
 
 /**
  * Render the checkout page
@@ -46,7 +59,7 @@ class CheckoutPage extends Component {
       'shipping[street_2]': '',
       'shipping[town_city]': '',
       'shipping[region]': '',
-      'shipping[postal_zip_code]': '',
+      'shipping[postal_zip_code]': '00242',
       'shipping[country]': 'CG',
       'billing[name]': '',
       'billing[street]': '',
@@ -97,6 +110,7 @@ class CheckoutPage extends Component {
     this.handleCaptureSuccess = this.handleCaptureSuccess.bind(this);
     this.handleCaptureError = this.handleCaptureError.bind(this);
     this.redirectOutOfCheckout = this.redirectOutOfCheckout.bind(this);
+    this.updateShippingOption = this.updateShippingOption.bind(this);
   }
 
   componentDidMount() {
@@ -246,8 +260,16 @@ class CheckoutPage extends Component {
       });
   }
 
+  updateShippingOption(value){
+    const option = this.props.shippingOptions.find(({ description }) => description === value);
+    console.log(option);
+    console.log(option.id);
+    this.setState({
+      'fulfillment[shipping_method]': option.id,
+    });
+  }
+
   handleChangeForm(e) {
-    console.log(e.target.value)
     // when input cardNumber changes format using ccFormat helper
     if (e.target.name === 'cardNumber') {
       e.target.value = ccFormat(e.target.value)
@@ -331,8 +353,10 @@ class CheckoutPage extends Component {
    *
    * @param {Event} e
    */
-  captureOrder(e) {
-    e.preventDefault();
+  captureOrder(values) {
+    //e.preventDefault();
+    console.log(values);
+    console.log("i have been invoked");
 
     // reset error states
     this.setState({
@@ -355,23 +379,23 @@ class CheckoutPage extends Component {
     }, {});
 
     const shippingAddress = {
-      name: this.state['shipping[name]'],
-      country: this.state['shipping[country]'],
-      street: this.state['shipping[street]'],
-      street_2: this.state['shipping[street_2]'],
-      town_city: this.state['shipping[town_city]'],
-      county_state: this.state['shipping[region]'],
-      postal_zip_code: this.state['shipping[postal_zip_code]']
+      name: values.name,
+      country: values.country,
+      street: values.street,
+      street_2: values.street_2,
+      town_city: values.town_city,
+      county_state: values.region,
+      postal_zip_code: values.postal_zip_code
     }
 
     // construct order object
     const newOrder = {
       line_items,
       customer: {
-        firstname: this.state['customer[first_name]'],
-        lastname: this.state['customer[last_name]'],
-        email: this.state['customer[email]'],
-        phone: this.state['customer[phone]'] || undefined
+        firstname: values.first_name,
+        lastname: values.last_name,
+        email: values.email || `mail${values.phone}@gmail.com`,
+        phone: values.phone
       },
       // collected 'order notes' data for extra field configured in the Chec Dashboard
       extrafields: {
@@ -535,6 +559,7 @@ class CheckoutPage extends Component {
   render() {
     const { checkout, shippingOptions } = this.props;
     const selectedShippingOption = shippingOptions.find(({id}) => id === this.state['fulfillment[shipping_method]']);
+    console.log(shippingOptions);
 
     if (this.state.loading) {
       return <Loader />;
@@ -568,161 +593,186 @@ class CheckoutPage extends Component {
               {
                 checkout
                 && (
-                  <form onChange={this.handleChangeForm} onSubmit={this.captureOrder} id='checkout-form' className='checkout-form'>
-                    <p className="font-size-subheader font-color-secondaire font-weight-semibold mb-4">
-                      Client
-                    </p>
-                    <div className="row">
-                      <div className="col-12 col-sm-6 mb-3 form-group">
-                        <label className="w-100">
-                          <p className="mb-1 font-size-caption font-color-light form-label">
-                            Prénom*
-                          </p>
-                          <input required name="customer[first_name]" autoComplete="prénom" value={this.state['customer[first_name]']} className="w-100 form-control" />
-                        </label>
-                      </div>
-                      <div className="col-12 col-sm-6 mb-3">
-                        <label className="w-100">
-                          <p className="mb-1 font-size-caption font-color-light">
-                            Nom de famille*
-                          </p>
-                          <input required name="customer[last_name]" autoComplete="family-name" value={this.state['customer[last_name]']} className="w-100 form-control" />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12 col-sm-6 mb-3">
-                        <label className="w-100">
-                          <p className="mb-1 font-size-caption font-color-light">
-                            Telephone*
-                          </p>
-                          <input
-                            required
-                            name="customer[phone]"
-                            autoComplete="tel"
-                            value={this.state['customer[phone]']}
-                            className="w-100 form-control"
-                          />
-                        </label>
-                      </div>
-                      <div className="col-12 col-sm-6 mb-3">
-                        <label className="w-100">
-                          <p className="mb-1 font-size-caption font-color-light">
-                            Email address
-                          </p>
-                          <input
-                            required
-                            name="customer[email]"
-                            autoComplete="email"
-                            value={this.state['customer[email]']}
-                            className="w-100 form-control"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <p className="font-size-subheader font-weight-semibold mb-4 font-color-secondaire">
-                      Adresse de livraison
-                    </p>
-                    <div className="mb-5">
-                      <AddressForm
-                        type="shipping"
-                        countries={this.state.countries}
-                        name={this.state['shipping[name]']}
-                        country={ this.state['shipping[country]']}
-                        region={this.state['shipping[region]']}
-                        street={this.state['shipping[street]']}
-                        street2={this.state['shipping[street_2]']}
-                        townCity={this.state['shipping[town_city]']}
-                        postalZipCode={this.state['shipping[postal_zip_code]']}
-                      />
-                      <div className="row">
-                        <div className="col-12 mb-3">
-                          <label className="w-100">
-                            <p className="mb-1 font-size-caption font-color-light">
-                              Mode de livraison*
-                            </p>
-                            <Dropdown
-                              name="fulfillment[shipping_method]"
-                              value={
-                                selectedShippingOption
-                                ? (`${selectedShippingOption.description} - ${selectedShippingOption.price.formatted_with_code}`)
-                                : ''
-                              }
-                              placeholder="Selectionner Mode de livraison"
-                            >
-                              {
-                                shippingOptions && shippingOptions.map(option => (
-                                  <option key={option.id} value={option.id}>
-                                  { `${option.description} - ${option.price.formatted_with_code}` }
-                                  </option>
-                                ))
-                              }
-                            </Dropdown>
-                          </label>
+                  <Formik 
+                        initialValues={{
+                          "first_name": this.state['customer[first_name]'], 
+                          "last_name": this.state['customer[last_name]'], 
+                          "phone": this.state['customer[phone]'], 
+                          "email": this.state['customer[email]'],
+                          'name': this.state['shipping[name]'],
+                          'country': this.state['shipping[country]'],
+                          'region': this.state['shipping[region]'],
+                          'street': this.state['shipping[street]'],
+                          'street_2': this.state['shipping[street_2]'],
+                          'town_city': this.state['shipping[town_city]'],
+                          'postal_zip_code': this.state['shipping[postal_zip_code]'],
+                          'shipping_method': '',
+                          'orderNotes': this.state.orderNotes
+                        }}
+                        validationSchema={checkoutSchema}
+                        onSubmit={values => this.captureOrder(values)}
+                  >
+                    {({ setFieldValue, errors, values }) => (
+                      <Form id='checkout-form' className='checkout-form'>
+                        {console.log(errors)}
+                        {console.log(values)}
+                        <p className="font-size-subheader font-color-secondaire font-weight-semibold mb-4">
+                          Client
+                        </p>
+                        <div className="row">
+                          <div className="col-12 col-sm-6 mb-3 form-group">
+                            <label className="w-100">
+                              <p className="mb-1 font-size-caption font-color-light form-label">
+                                Prénom*
+                              </p>
+                              <Field type="text" name="first_name" autoComplete="prénom" className={`w-100 form-control`} />
+                              <ErrorMessage component="span" name="first_name" className="font-color-danger" />
+                            </label>
+                          </div>
+                          <div className="col-12 col-sm-6 mb-3">
+                            <label className="w-100">
+                              <p className="mb-1 font-size-caption font-color-light">
+                                Nom de famille*
+                              </p>
+                              <Field type="text" name="last_name" autoComplete="family-name" className={`w-100 form-control`} />
+                              <ErrorMessage component="span" name="last_name" className="font-color-danger" />
+                            </label>
+                          </div>
                         </div>
-                      </div>
-                      {/*<div
-                        onClick={this.toggleNewsletter}
-                        className="d-flex mb-4 flex-nowrap cursor-pointer"
-                      >
-                        <Checkbox
-                          onClick={this.toggleNewsletter}
-                          checked={this.state.receiveNewsletter}
-                          className="mr-3"
-                        />
-                        <p>
-                          Receive our news, restocking, good plans and news in your mailbox!
-                          Rest assured, you will not be flooded, we only send one newsletter
-                          per month approximately 🙂
+                        <div className="row">
+                          <div className="col-12 col-sm-6 mb-3">
+                            <label className="w-100">
+                              <p className="mb-1 font-size-caption font-color-light">
+                                Telephone*
+                              </p>
+                              <Field
+                                type="text"
+                                name="phone"
+                                autoComplete="tel"
+                                className={`w-100 form-control`}
+                              />
+                              <ErrorMessage component="span" name="phone" className="font-color-danger" />
+                            </label>
+                          </div>
+                          <div className="col-12 col-sm-6 mb-3">
+                            <label className="w-100">
+                              <p className="mb-1 font-size-caption font-color-light">
+                                Email address
+                              </p>
+                              <Field
+                                type="email"
+                                name="email"
+                                autoComplete="email"
+                                className={`w-100 form-control`}
+                              />
+                            </label>
+                          </div>
+                        </div>
+                        <p className="font-size-subheader font-weight-semibold mb-4 font-color-secondaire">
+                          Adresse de livraison
                         </p>
-                      </div>*/}
-                      <label className="w-100 mb-3">
-                        <p className="mb-1 font-size-caption font-color-light">
-                          Notes de commande (facultatif)
-                        </p>
-                        <textarea name="orderNotes" value={this.state.orderNotes} className="w-100 form-control" />
-                      </label>
-                    </div>
-
-                    {/* this.renderPaymentDetails() */}
-
-                    {/* Billing Address */}
-                    { checkout.collects && checkout.collects.billing_address && <>
-                      <p className="font-size-subheader font-weight-semibold mb-3">
-                        Billing Address
-                      </p>
-                      <div className="border border-color-gray400 mb-5">
-                        {billingOptions.map((value, index) => (
-                          <label
-                            key={index}
-                            onClick={() => this.setState({ selectedBillingOption: value })}
-                            className={`p-3 d-flex align-items-center cursor-pointer ${index !==
-                              billingOptions.length - 1 && 'borderbottom border-color-gray500'}`}
+                        <div className="mb-5">
+                          <AddressForm
+                            type="shipping"
+                            countries={this.state.countries}
+                            name={values.name}
+                            country={ values.country}
+                            region={values.region}
+                            street={values.street}
+                            street2={values.street_2}
+                            townCity={values.town_city}
+                            postalZipCode={values.postal_zip_code}
+                            setFieldValue={setFieldValue}
+                          />
+                          <div className="row">
+                            <div className="col-12 mb-3">
+                              <label className="w-100">
+                                <p className="mb-1 font-size-caption font-color-light">
+                                  Mode de livraison*
+                                </p>
+                                <Dropdown
+                                  placeholder="Selectionner Mode de livraison"
+                                  name="shipping_method"
+                                  value={values.shipping_method}
+                                  onChange={setFieldValue}
+                                  updateOption={this.updateShippingOption}
+                                >
+                                  {
+                                    shippingOptions && shippingOptions.map(option => (
+                                      <option key={option.id} value={option.description}>
+                                      { `${option.description} - ${option.price.formatted_with_code}` }
+                                      </option>
+                                    ))
+                                  }
+                                </Dropdown>
+                                <ErrorMessage component="span" name="shipping_method" className="font-color-danger" />
+                              </label>
+                            </div>
+                          </div>
+                          {/*<div
+                            onClick={this.toggleNewsletter}
+                            className="d-flex mb-4 flex-nowrap cursor-pointer"
                           >
-                            <Radiobox
-                              checked={this.state.selectedBillingOption === value}
-                              onClick={() => this.setState({ selectedValue: value })}
+                            <Checkbox
+                              onClick={this.toggleNewsletter}
+                              checked={this.state.receiveNewsletter}
                               className="mr-3"
                             />
-                            <p className="font-weight-medium">{value}</p>
+                            <p>
+                              Receive our news, restocking, good plans and news in your mailbox!
+                              Rest assured, you will not be flooded, we only send one newsletter
+                              per month approximately 🙂
+                            </p>
+                          </div>*/}
+                          <label className="w-100 mb-3">
+                            <p className="mb-1 font-size-caption font-color-light">
+                              Notes de commande (facultatif)
+                            </p>
+                            <textarea name="orderNotes" className="w-100 form-control" />
                           </label>
-                        ))}
-                      </div>
-                      {this.state.selectedBillingOption === 'Use a different billing address' && (
-                        <AddressForm
-                          type="billing"
-                          countries={this.state.countries}
-                          name={this.state['billing[name]']}
-                          country={ this.state['billing[country]']}
-                          region={this.state['billing[region]']}
-                          street={this.state['billing[street]']}
-                          street2={this.state['billing[street_2]']}
-                          townCity={this.state['billing[town_city]']}
-                          postalZipCode={this.state['billing[postal_zip_code]']}
-                        />
-                      )}
-                    </>}
-                  </form>
+                        </div>
+
+                        {/* this.renderPaymentDetails() */}
+
+                        {/* Billing Address */}
+                        { checkout.collects && checkout.collects.billing_address && <>
+                          <p className="font-size-subheader font-weight-semibold mb-3">
+                            Billing Address
+                          </p>
+                          <div className="border border-color-gray400 mb-5">
+                            {billingOptions.map((value, index) => (
+                              <label
+                                key={index}
+                                onClick={() => this.setState({ selectedBillingOption: value })}
+                                className={`p-3 d-flex align-items-center cursor-pointer ${index !==
+                                  billingOptions.length - 1 && 'borderbottom border-color-gray500'}`}
+                              >
+                                <Radiobox
+                                  checked={this.state.selectedBillingOption === value}
+                                  onClick={() => this.setState({ selectedValue: value })}
+                                  className="mr-3"
+                                />
+                                <p className="font-weight-medium">{value}</p>
+                              </label>
+                            ))}
+                          </div>
+                          {this.state.selectedBillingOption === 'Use a different billing address' && (
+                            <AddressForm
+                              type="billing"
+                              countries={this.state.countries}
+                              name={this.state['billing[name]']}
+                              country={ this.state['billing[country]']}
+                              region={this.state['billing[region]']}
+                              street={this.state['billing[street]']}
+                              street2={this.state['billing[street_2]']}
+                              townCity={this.state['billing[town_city]']}
+                              postalZipCode={this.state['billing[postal_zip_code]']}
+                            />
+                          )}
+                        </>}
+                      </Form>
+                    )}
+                  </Formik>
                 )
               }
             </div>
@@ -822,7 +872,6 @@ class CheckoutPage extends Component {
                   type="submit"
                   form="checkout-form"
                   className="font-color-white w-100 border-none h-56 font-weight-semibold d-lg-block btn-valid"
-                  disabled={!selectedShippingOption}
                 >
                   Commander
                 </button>

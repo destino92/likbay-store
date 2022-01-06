@@ -8,7 +8,19 @@ class Dropdown extends Component {
     this.state = {
       isOpen: false
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange = e => {
+    // this is going to call setFieldValue and manually update
+    console.log(e.target.value);
+    if(this.props.name === 'shipping_method'){
+      this.props.updateOption(e.target.value);
+    }
+    
+    this.props.onChange(this.props.name, e.target.value);
+  };
 
   render() {
     const { isOpen } = this.state;
@@ -31,6 +43,7 @@ class Dropdown extends Component {
             name={this.props.name}
             required={this.props.required || undefined}
             disabled={this.props.disabled || undefined}
+            onChange={this.handleChange}
             value={this.props.value}
             className="position-absolute top-0 right-0 bottom-0 left-0 opacity-0 pointer w-100">
             <option value="" disabled>

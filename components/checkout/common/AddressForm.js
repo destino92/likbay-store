@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import commerce from '../../../lib/commerce';
 import Dropdown from '../../common/atoms/Dropdown';
+import { Field, ErrorMessage } from 'formik';
 
 export default class AddressForm extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ export default class AddressForm extends Component {
       street,
       street2,
       postalZipCode,
+      setFieldValue
     } = this.props;
 
     return (
@@ -62,7 +64,8 @@ export default class AddressForm extends Component {
               <p className="mb-1 font-size-caption font-color-light">
                 Nom Complet*
               </p>
-              <input required name={`${type}[name]`} autoComplete="name" value={name} className="w-100 form-control" />
+              <Field type='text' name="name" autoComplete="name" className={`w-100 form-control`} />
+              <ErrorMessage component="span" name="name" className="font-color-danger" />
             </label>
           </div>
         </div>
@@ -73,10 +76,10 @@ export default class AddressForm extends Component {
                 Pays*
               </p>
               <Dropdown
-                required
-                name={`${type}[country]`}
+                name="country"
                 placeholder="Selectionner le pays"
                 value={country}
+                disabled
               >
                 {
                   Object.entries(countries).map(([code, name]) => (
@@ -91,7 +94,8 @@ export default class AddressForm extends Component {
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">Ville*</p>
-              <input required name={`${type}[town_city]`} autoComplete="address-level2" value={townCity} className="w-100 form-control" />
+              <Field type='text' name="town_city" autoComplete="address-level2" className={`w-100 form-control`} />
+              <ErrorMessage component="span" name="town_city" className="font-color-danger" />
             </label>
           </div>
         </div>
@@ -101,14 +105,14 @@ export default class AddressForm extends Component {
               <p className="mb-1 font-size-caption font-color-light">
                 Adresse ligne 1*
               </p>
-              <input
-                required
+              <Field
+                type="text"
                 autoComplete="street-address"
-                name={`${type}[street]`}
-                value={street}
-                className="w-100 form-control"
-                placeholder="House number, steet address, etc."
+                name="street"
+                className={`w-100 form-control`}
+                placeholder="Rue, quartier, arrondissement ..."
               />
+              <ErrorMessage component="span" name="street" className="font-color-danger" />
             </label>
           </div>
           <div className="col-12 col-sm-6 mb-3">
@@ -116,10 +120,10 @@ export default class AddressForm extends Component {
               <p className="mb-1 font-size-caption font-color-light">
                 Adresse ligne 2 (optionnelle)
               </p>
-              <input
-                name={`${type}[street_2]`}
-                value={street2}
-                className="w-100 form-control"
+              <Field
+                type="text"
+                name="street_2"
+                className={`w-100 form-control`}
                 placeholder="Appartement, numéro de suite, etc."
               />
             </label>
@@ -132,10 +136,10 @@ export default class AddressForm extends Component {
                 Région
               </p>
               <Dropdown
-                required
-                name={`${type}[region]`}
-                value={region}
                 placeholder="Select a region"
+                name="region"
+                value={region}
+                onChange={setFieldValue}
               >
                 {
                   Object.entries(this.state.subdivisions).map(([code, name]) => (
@@ -145,6 +149,7 @@ export default class AddressForm extends Component {
                   ))
                 }
               </Dropdown>
+              <ErrorMessage component="span" name="region" className="font-color-danger" />
             </label>
           </div>
           <div className="col-12 col-sm-6 mb-3">
@@ -152,11 +157,13 @@ export default class AddressForm extends Component {
               <p className="mb-1 font-size-caption font-color-light">
                 Code postal*
               </p>
-              <input
+              <Field
+                type="text"
                 autoComplete="postal-code"
-                name={`${type}[postal_zip_code]`}
+                name="postal_zip_code"
                 value={postalZipCode}
-                className="w-100 form-control"
+                className={`w-100 form-control`}
+                disabled
               />
             </label>
           </div>
