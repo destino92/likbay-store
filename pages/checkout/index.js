@@ -399,7 +399,7 @@ class CheckoutPage extends Component {
       },
       // collected 'order notes' data for extra field configured in the Chec Dashboard
       extrafields: {
-        extr_kd6Ll2Ay15V2mj: this.state.orderNotes,
+        extr_kd6Ll2Ay15V2mj: values.orderNotes,
       },
       // Add more to the billing object if you're collecting a billing address in the
       // checkout form. This is just sending the name as a minimum.
@@ -607,7 +607,7 @@ class CheckoutPage extends Component {
                           'town_city': this.state['shipping[town_city]'],
                           'postal_zip_code': this.state['shipping[postal_zip_code]'],
                           'shipping_method': '',
-                          'orderNotes': this.state.orderNotes
+                          'orderNotes': ''
                         }}
                         validationSchema={checkoutSchema}
                         onSubmit={values => this.captureOrder(values)}

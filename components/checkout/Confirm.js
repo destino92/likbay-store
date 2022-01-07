@@ -37,7 +37,7 @@ class Confirm extends Component {
         className="d-flex align-items-center text-decoration-underline cursor-pointer mt-3 mt-sm-0 no-print bg-transparent"
       >
         <img src="/icon/print.svg" className="mr-2 w-20 no-print" alt=""/>
-        <div className="no-print">Imprimer le bon de commande</div>
+        <div className="no-print">Imprimer ou faite une capture du bon de commande</div>
       </button>
     );
   }
