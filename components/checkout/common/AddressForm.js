@@ -109,7 +109,7 @@ export default class AddressForm extends Component {
                 type="text"
                 autoComplete="street-address"
                 name="street"
-                className={`w-100 form-control`}
+                className="w-100 form-control"
                 placeholder="Rue, quartier, arrondissement ..."
               />
               <ErrorMessage component="span" name="street" className="font-color-danger" />
