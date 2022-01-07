@@ -31,7 +31,7 @@ class MyDocument extends Document {
           <meta property="og:image" content="" />
           <meta property="og:description" content="Likbay est une solution de vente et d'achats en ligne, veuillez visiter" />
           <meta property="og:url" content="likbay.co" />
-          <meta property="twitter:title" content="Likbay | Demo storefront" />
+          <meta property="twitter:title" content="Likbay | Achat en ligne" />
           <meta name="twitter:creator" content="@likaby" />
           <meta property="twitter:image" content="" />
           <meta property="twitter:description" content="Likbay est une solution de vente et d'achats en ligne, veuillez visiter" />
