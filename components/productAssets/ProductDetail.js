@@ -4,6 +4,7 @@ import VariantSelector from '../productAssets/VariantSelector';
 import { animateScroll as scroll } from 'react-scroll';
 import { connect } from 'react-redux';
 import { addToCart } from '../../store/actions/cartActions';
+import parse from 'html-react-parser';
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -136,8 +137,9 @@ class ProductDetail extends Component {
         <p className="font-size-display3 font-color-principal mt-2 mb-2">
           {name}
         </p>
+        {console.log(this.props.product)}
         <span className="mb-4 badge bg-secondaire font-color-white">{attributes[0].value}</span>
-        <div className="mb-4 pb-3 font-size-subheader">{(description || '').replace(reg, '')}</div>
+        <div className="mb-4 pb-3 font-size-subheader">{parse(description)}</div>
 
         {/* Product Variant */}
           <div className="d-sm-block">
