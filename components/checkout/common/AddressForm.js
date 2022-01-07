@@ -64,7 +64,7 @@ export default class AddressForm extends Component {
               <p className="mb-1 font-size-caption font-color-light">
                 Nom Complet*
               </p>
-              <Field type='text' name="name" autoComplete="name" className={`w-100 form-control`} />
+              <Field type='text' name="name" autoComplete="name" className="w-100 form-control" />
               <ErrorMessage component="span" name="name" className="font-color-danger" />
             </label>
           </div>
@@ -94,7 +94,7 @@ export default class AddressForm extends Component {
           <div className="col-12 col-sm-6 mb-3">
             <label className="w-100">
               <p className="mb-1 font-size-caption font-color-light">Ville*</p>
-              <Field type='text' name="town_city" autoComplete="address-level2" className={`w-100 form-control`} />
+              <Field type='text' name="town_city" autoComplete="address-level2" className="w-100 form-control" />
               <ErrorMessage component="span" name="town_city" className="font-color-danger" />
             </label>
           </div>
@@ -123,7 +123,7 @@ export default class AddressForm extends Component {
               <Field
                 type="text"
                 name="street_2"
-                className={`w-100 form-control`}
+                className="w-100 form-control"
                 placeholder="Appartement, numéro de suite, etc."
               />
             </label>
@@ -162,7 +162,7 @@ export default class AddressForm extends Component {
                 autoComplete="postal-code"
                 name="postal_zip_code"
                 value={postalZipCode}
-                className={`w-100 form-control`}
+                className="w-100 form-control"
                 disabled
               />
             </label>

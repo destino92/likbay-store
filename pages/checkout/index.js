@@ -27,14 +27,14 @@ import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js
 const billingOptions = ['Same as shipping Address', 'Use a different billing address'];
 
 const checkoutSchema = Yup.object().shape({
-  "first_name": Yup.string().required("Le champ Prénom ne peut pas etre vide"),
-  "last_name": Yup.string().required("Le champ Nom ne peut pas etre vide"),
-  "phone": Yup.string().required("Le champ Téléphone ne peut pas etre vide"),
-  'name': Yup.string().required("Le champ Nom complet ne peut pas etre vide"),
-  'street': Yup.string().required("Le champ Adresse ne peut pas etre vide"),
-  'town_city': Yup.string().required("Le champ Ville ne peut pas etre vide"),
-  'region': Yup.string().required("Le champ Région ne peut pas etre vide"),
-  'shipping_method': Yup.string().required("Le champ mode de livraison ne peut pas etre vide"),
+  'first_name': Yup.string().required('Le champ Prénom ne peut pas etre vide'),
+  'last_name': Yup.string().required('Le champ Nom ne peut pas etre vide'),
+  'phone': Yup.string().required('Le champ Téléphone ne peut pas etre vide'),
+  'name': Yup.string().required('Le champ Nom complet ne peut pas etre vide'),
+  'street': Yup.string().required('Le champ Adresse ne peut pas etre vide'),
+  'town_city': Yup.string().required('Le champ Ville ne peut pas etre vide'),
+  'region': Yup.string().required('Le champ Région ne peut pas etre vide'),
+  'shipping_method': Yup.string().required('Le champ mode de livraison ne peut pas etre vide'),
 });
 
 /**
@@ -354,9 +354,6 @@ class CheckoutPage extends Component {
    * @param {Event} e
    */
   captureOrder(values) {
-    //e.preventDefault();
-    console.log(values);
-    console.log("i have been invoked");
 
     // reset error states
     this.setState({
@@ -595,10 +592,10 @@ class CheckoutPage extends Component {
                 && (
                   <Formik 
                         initialValues={{
-                          "first_name": this.state['customer[first_name]'], 
-                          "last_name": this.state['customer[last_name]'], 
-                          "phone": this.state['customer[phone]'], 
-                          "email": this.state['customer[email]'],
+                          'first_name': this.state['customer[first_name]'], 
+                          'last_name': this.state['customer[last_name]'], 
+                          'phone': this.state['customer[phone]'], 
+                          'email': this.state['customer[email]'],
                           'name': this.state['shipping[name]'],
                           'country': this.state['shipping[country]'],
                           'region': this.state['shipping[region]'],
@@ -625,7 +622,7 @@ class CheckoutPage extends Component {
                               <p className="mb-1 font-size-caption font-color-light form-label">
                                 Prénom*
                               </p>
-                              <Field type="text" name="first_name" autoComplete="prénom" className={`w-100 form-control`} />
+                              <Field type="text" name="first_name" autoComplete="prénom" className="w-100 form-control" />
                               <ErrorMessage component="span" name="first_name" className="font-color-danger" />
                             </label>
                           </div>
@@ -634,7 +631,7 @@ class CheckoutPage extends Component {
                               <p className="mb-1 font-size-caption font-color-light">
                                 Nom de famille*
                               </p>
-                              <Field type="text" name="last_name" autoComplete="family-name" className={`w-100 form-control`} />
+                              <Field type="text" name="last_name" autoComplete="family-name" className="w-100 form-control" />
                               <ErrorMessage component="span" name="last_name" className="font-color-danger" />
                             </label>
                           </div>
@@ -649,7 +646,7 @@ class CheckoutPage extends Component {
                                 type="text"
                                 name="phone"
                                 autoComplete="tel"
-                                className={`w-100 form-control`}
+                                className="w-100 form-control"
                               />
                               <ErrorMessage component="span" name="phone" className="font-color-danger" />
                             </label>
@@ -663,7 +660,7 @@ class CheckoutPage extends Component {
                                 type="email"
                                 name="email"
                                 autoComplete="email"
-                                className={`w-100 form-control`}
+                                className="w-100 form-control"
                               />
                             </label>
                           </div>
