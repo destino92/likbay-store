@@ -119,28 +119,43 @@ const HierarchicalMenu = ({ items, refine, createURL }) => (
 const CustomHierarchicalMenu = connectHierarchicalMenu(HierarchicalMenu);
 
 const RefinementList = ({
+  searchable,
   items,
   isFromSearch,
   refine,
   searchForItems,
   createURL,
-}) => (
-  <div className="sidebar-box-items">
+  limit,
+  showMoreLimit,
+  showMore
+}) => 
+{ 
+  const [extended, setExtended] = useState(false);
+  const listLimit = extended ? showMoreLimit : limit;
+
+  return (<div className="sidebar-box-items">
     <ul style={{listStyle: 'none'}}>
-      <li>
-        <input
+      <li key="search-list">
+        {searchable && <input
           type="search"
           onChange={event => searchForItems(event.currentTarget.value)}
-        />
+          className='search-box-input mb-3'
+          placeholder="Rechercher"
+        />}
       </li>
-      {items.map(item => (
+      {items.slice(0, listLimit).map(item => (
           <li key={item.objectID}>
             <CustomCheckbox item={item} refine={refine} createURL={createURL} isFromSearch={isFromSearch} searchForItems />
           </li>
       ))}
     </ul>
-  </div>
-);
+    {showMore && (
+      <button onClick={() => setExtended(!extended)} className="h-40 px-3 btn-skip w-100">
+        {extended ? 'Voir moins' : 'Voir plus'}
+      </button>
+    )}
+  </div>);
+}
 
 const CustomRefinementList = connectRefinementList(RefinementList);
 
@@ -312,22 +327,21 @@ class ProductList extends React.Component {
                   <div className="border-t border-solid py-8 mt-6">
                     <div className="font-weight-semibold sidebar-box-title">Categories</div>
                     {/*<CustomRefinementList attribute="category" />*/}
-                    <CustomRefinementList attribute="category" />
+                    <CustomRefinementList 
+                      searchable 
+                      attribute="category" 
+                      limit={10}
+                      showMoreLimit={20}
+                      showMore={true} 
+                    />
                   </div>
                   <div className="border-t border-solid py-8 mt-6">
                     <div className="font-weight-semibold sidebar-box-title">Marque</div>
                     <CustomRefinementList attribute="marque" 
-                      searchable 
-                      showMore
-                      translations={{
-                        showMore(expanded) {
-                          return expanded ? 'Moins' : 'Plus';
-                        },
-                        noResults: 'Pas de résultats',
-                        submitTitle: 'Soumettez votre requête de recherche.',
-                        resetTitle: 'Effacez votre requête de recherche.',
-                        placeholder: 'Rechercher une marque',
-                      }}
+                      searchable
+                      limit={10}
+                      showMoreLimit={20}
+                      showMore={true} 
                     />
                   </div>
                   {/*<div className="border-t border-solid py-8">
