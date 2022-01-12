@@ -126,9 +126,19 @@ const RefinementList = ({
   createURL,
 }) => (
   <div className="sidebar-box-items">
+    <ul style={{listStyle: 'none'}}>
+      <li>
+        <input
+          type="search"
+          onChange={event => searchForItems(event.currentTarget.value)}
+        />
+      </li>
       {items.map(item => (
-          <CustomCheckbox key={item.objectID} item={item} refine={refine} createURL={createURL} isFromSearch={isFromSearch} searchForItems />
+          <li>
+            <CustomCheckbox key={item.objectID} item={item} refine={refine} createURL={createURL} isFromSearch={isFromSearch} searchForItems />
+          </li>
       ))}
+    </ul>
   </div>
 );
 
@@ -308,6 +318,7 @@ class ProductList extends React.Component {
                     <div className="font-weight-semibold sidebar-box-title">Marque</div>
                     <CustomRefinementList attribute="marque" 
                       searchable 
+                      showMore
                       translations={{
                         showMore(expanded) {
                           return expanded ? 'Moins' : 'Plus';
@@ -315,7 +326,7 @@ class ProductList extends React.Component {
                         noResults: 'Pas de résultats',
                         submitTitle: 'Soumettez votre requête de recherche.',
                         resetTitle: 'Effacez votre requête de recherche.',
-                        placeholder: 'Chercher ici...',
+                        placeholder: 'Rechercher une marque',
                       }}
                     />
                   </div>
