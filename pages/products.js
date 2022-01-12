@@ -10,7 +10,7 @@ import { findResultsState } from 'react-instantsearch-dom/server';
 import ProductList from '../components/products/ProductList';
 
 const searchClient = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_API_KEY
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID, '884789227233d2c5fb7909c1229a9e11'
 );
 
 const updateAfter = 700;

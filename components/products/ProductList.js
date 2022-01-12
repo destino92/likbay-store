@@ -80,7 +80,7 @@ const CustomCheckbox = ({
               </div>
               <label htmlFor="checkbox">
                   {isFromSearch ? (
-                    <Highlight attribute="label" hit={item} />
+                    <CustomHighlight attribute="label" hit={item} />
                   ) : (
                     item.label
                   )}
@@ -134,8 +134,8 @@ const RefinementList = ({
         />
       </li>
       {items.map(item => (
-          <li>
-            <CustomCheckbox key={item.objectID} item={item} refine={refine} createURL={createURL} isFromSearch={isFromSearch} searchForItems />
+          <li key={item.objectID}>
+            <CustomCheckbox item={item} refine={refine} createURL={createURL} isFromSearch={isFromSearch} searchForItems />
           </li>
       ))}
     </ul>
