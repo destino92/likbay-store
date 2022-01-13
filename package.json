@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "next build && next export",
+    "deploy": "next build",
     "lint": "eslint components lib pages store utils",
     "lint:fix": "eslint --fix components lib pages store utils",
     "seed": "chec-seed seeds"
